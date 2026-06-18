@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayur-Shalya-Guide</title>
+    <style>
+        /* Styling for a premium, traditional medical guide feel */
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #fcfbfa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 3px double #800020; /* Maroon accent */
+        }
+
+        h1 {
+            color: #800020; /* Maroon (Alternative: #000080 for Navy Blue) */
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Main Navigation Tabs */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            font-family: 'Georgia', serif;
+            background-color: #fff;
+            border: 2px solid #800020;
+            color: #800020;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: #800020;
+            color: #fff;
+        }
+
+        /* Content Windows */
+        .window {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border-top: 4px solid #800020;
+        }
+
+        .window.active {
+            display: block;
+        }
+
+        /* Sub-options Button Styling */
+        .option-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            font-family: 'Georgia', serif;
+            background-color: #000080; /* Navy Blue for secondary actions */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .option-btn:hover {
+            background-color: #00004d;
+        }
+
+        /* Dropdown Styling */
+        select {
+            font-family: 'Georgia', serif;
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 15px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* Instrument Grid Display */
+        .instrument-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .instrument-card {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .instrument-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .instrument-card h4 {
+            margin: 10px 0 0 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            text-decoration: underline;
+            font-family: 'Georgia', serif;
+            padding: 0;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ayur-Shalya-Guide</h1>
+        <p class="subtitle">An Interactive Surgical Companion</p>
+    </header>
+
+    <div class="tabs-container">
+        <button class="tab-btn" onclick="openTab('instruments')">Instruments</button>
+        <button class="tab-btn" onclick="openTab('procedures')">Procedures</button>
+        <button class="tab-btn" onclick="openTab('games')">Games</button>
+        <button class="tab-btn" onclick="openTab('quizzes')">Quizzes</button>
+    </div>
+
+    <div id="instruments" class="window">
+        <h2>Instruments</h2>
+        <p>Select a category to explore surgical instruments:</p>
+        <div class="option-group">
+            <button class="option-btn" onclick="openSubWindow('yantra-content')">Yantra</button>
+            <button class="option-btn" onclick="openSubWindow('shastra-content')">Shastra</button>
+        </div>
+    </div>
+
+    <div id="shastra-content" class="window">
+        <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments</button>
+        <h2>Shastra</h2>
+        <p>Choose how you want to view the Shastra instruments:</p>
+        <div class="option-group">
+            <button class="option-btn">Shastra Overall</button>
+            <button class="option-btn" onclick="openSubWindow('shastra-procedure-content')">Shastra by Procedure</button>
+        </div>
+    </div>
+
+    <div id="shastra-procedure-content" class="window">
+        <button class="back-btn" onclick="openSubWindow('shastra-content')">← Back</button>
+        <h2>Shastra by Procedure</h2>
+        <label for="procedure-select">Select a Procedure:</label><br>
+        <select id="procedure-select" onchange="handleProcedureChange(this.value)">
+            <option value="">-- Choose an option --</option>
+            <option value="appendicectomy">Appendicectomy</option>
+            <option value="cholecystectomy">Cholecystectomy</option>
+            <option value="circumcision">Circumcision</option>
+            <option value="hernia">Hernia Repair</option>
+        </select>
+
+        <div id="appendicectomy-results" style="display: none;">
+            <h3>Appendicectomy Instruments</h3>
+            <div class="instrument-grid">
+                <div class="instrument-card">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400" alt="Mosquito Forceps">
+                    <h4>Mosquito Forceps</h4>
+                </div>
+                <div class="instrument-card">
+                    <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400" alt="Artery Forceps">
+                    <h4>Artery Forceps</h4>
+                </div>
+                <div class="instrument-card">
+                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=400" alt="Allis Forceps">
+                    <h4>Allis Forceps</h4>
+                </div>
+                <div class="instrument-card">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400" alt="Surgical Blade">
+                    <h4>Surgical Blade</h4>
+                </div>
+            </div>
+        </div>
+        
+        <div id="other-procedure-placeholder" style="display: none; margin-top: 20px; color: #666; font-style: italic;">
+            Instrument list for this procedure is under development for the prototype.
+        </div>
+    </div>
+
+    <div id="procedures" class="window"><h2>Procedures</h2><p>Content coming soon...</p></div>
+    <div id="games" class="window"><h2>Games</h2><p>Content coming soon...</p></div>
+    <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
+
+    <script>
+        // Handles switching between the main top navigation tabs
+        function openTab(tabId) {
+            // Hide all windows
+            const windows = document.querySelectorAll('.window');
+            windows.forEach(win => win.classList.remove('active'));
+            
+            // Remove active class from all top buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show current window
+            const targetWindow = document.getElementById(tabId);
+            if(targetWindow) targetWindow.classList.add('active');
+            
+            // Highlight active tab button
+            event.currentTarget.classList.add('active');
+        }
+
+        // Handles opening deep nested windows/views
+        function openSubWindow(subWindowId) {
+            const windows = document.querySelectorAll('.window');
+            windows.forEach(win => win.classList.remove('active'));
+
+            document.getElementById(subWindowId).classList.add('active');
+        }
+
+        // Handles dropdown logic
+        function handleProcedureChange(value) {
+            const appendicectomyDiv = document.getElementById('appendicectomy-results');
+            const placeholderDiv = document.getElementById('other-procedure-placeholder');
+
+            if (value === 'appendicectomy') {
+                appendicectomyDiv.style.display = 'block';
+                placeholderDiv.style.display = 'none';
+            } else if (value === '') {
+                appendicectomyDiv.style.display = 'none';
+                placeholderDiv.style.display = 'none';
+            } else {
+                appendicectomyDiv.style.display = 'none';
+                placeholderDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
