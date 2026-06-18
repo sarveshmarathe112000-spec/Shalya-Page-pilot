@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayur-Shalya-Guide</title>
     <style>
-        /* Base Styling */
+        /* Base Structural Reset & Typography */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -42,7 +42,7 @@
             margin: 0;
         }
 
-        /* Navigation Tabs */
+        /* Top Navigation Menu Tabs */
         .tabs-container {
             display: flex;
             justify-content: center;
@@ -72,7 +72,7 @@
             color: #fff;
         }
 
-        /* Content Windows */
+        /* Display Content Windows */
         .window {
             display: none;
             width: 90%;
@@ -134,7 +134,7 @@
             display: inline-block;
         }
 
-        /* Instrument Tab Grid */
+        /* Instruments Tab Display Layout */
         .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,7 +156,7 @@
             object-fit: contain;
         }
 
-        /* GAME SPECIFIC STYLING */
+        /* INTERACTIVE GAME UI STYLING */
         .game-dashboard {
             display: flex;
             justify-content: space-between;
@@ -172,14 +172,14 @@
         .timer-box { color: #cc0000; }
         .score-box { color: #006600; }
 
-        /* The Green Surgical Trolley */
+        /* The Clinical Green Surgical Instrument Trolley Workspace */
         .trolley-zone {
             width: 100%;
-            height: 250px;
-            background-color: #2e6f40; /* Surgical Green Color */
-            border: 6px solid #b0b0b0; /* Metallic frame look */
+            height: 280px;
+            background-color: #2e6f40; /* Traditional Surgical Green Backdrop */
+            border: 6px solid #b0b0b0; /* Metallic finish rim look */
             border-radius: 8px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.45);
             display: flex;
             flex-wrap: wrap;
             align-content: flex-start;
@@ -196,17 +196,17 @@
 
         .trolley-label {
             position: absolute;
-            bottom: 10px;
-            right: 15px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.5rem;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 1.6rem;
             font-style: italic;
             pointer-events: none;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Item Bank Container */
+        /* Available Instruments Label Rack Bank */
         .item-bank {
             display: flex;
             flex-wrap: wrap;
@@ -216,10 +216,10 @@
             padding: 15px;
             border-radius: 6px;
             margin-top: 20px;
-            min-height: 100px;
+            min-height: 120px;
         }
 
-        /* Draggable Label Items */
+        /* Interactive Draggable Elements Label Cards */
         .drag-item {
             background-color: #fff;
             color: #333;
@@ -238,7 +238,7 @@
             transform: scale(0.95);
         }
 
-        /* Placed Items Modifiers */
+        /* Dynamic Border State Highlights within Trolley Bounds */
         .trolley-zone .drag-item {
             background-color: rgba(255, 255, 255, 0.95);
             border-color: #2e6f40;
@@ -250,11 +250,12 @@
             background-color: #800020;
             color: white;
             border: none;
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-size: 1.1rem;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .start-btn:hover {
@@ -342,7 +343,7 @@
         <label for="game-procedure-select">Select Procedure Setup:</label><br>
         <select id="game-procedure-select" onchange="initGameView(this.value)">
             <option value="">-- Choose a Procedure --</option>
-            <option value="clw">Suturing of CLW (Clean Lacerated Wound)</option>
+            <option value="appendectomy">Appendectomy Setup</option>
             <option value="other">Lap. Cholecystectomy (Locked)</option>
         </select>
 
@@ -370,7 +371,7 @@
     <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
 
     <script>
-        /* MAIN NAVIGATION CONTROLLER */
+        /* MAIN APPLICATION TAB ROUTING NAVIGATION MODULE */
         function openTab(tabId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
@@ -381,7 +382,6 @@
             const targetWindow = document.getElementById(tabId);
             if(targetWindow) targetWindow.classList.add('active');
             
-            // Handle cross-tab manual activation visualization 
             if(event && event.currentTarget && event.currentTarget.classList) {
                 event.currentTarget.classList.add('active');
             } else {
@@ -410,22 +410,28 @@
             }
         }
 
-        /* DRAG AND DROP GAME SYSTEM LOGIC */
+        /* GAME DRAG MECHANICS ENGINE MATRIX SETUP */
         const gameItemsData = [
-            { id: "item1", name: "Mosquito Forceps", isCorrect: true },
-            { id: "item2", name: "Dissecting Forceps", isCorrect: true },
-            { id: "item3", name: "Needle Holder", isCorrect: true },
-            { id: "item4", name: "Scissors", isCorrect: true },
-            { id: "item5", name: "Suture", isCorrect: true },
-            { id: "item6", name: "Gloves", isCorrect: true },
-            { id: "item7", name: "Betadine", isCorrect: true },
-            { id: "item8", name: "Gauzes", isCorrect: true },
-            { id: "item9", name: "Dressing-pad", isCorrect: true },
-            { id: "item10", name: "Adhesive Bandage", isCorrect: true },
-            { id: "item11", name: "Allis Forceps", isCorrect: false },
-            { id: "item12", name: "PoP Cast", isCorrect: false },
-            { id: "item13", name: "Babcock Forceps", isCorrect: false },
-            { id: "item14", name: "Suture Cutting Scissors", isCorrect: false }
+            // Correct Items List Configuration Arrays
+            { id: "inst1", name: "Mosquito Forceps", isCorrect: true },
+            { id: "inst2", name: "Dissecting Forceps", isCorrect: true },
+            { id: "inst3", name: "Needle Holder", isCorrect: true },
+            { id: "inst4", name: "Scissors", isCorrect: true },
+            { id: "inst5", name: "Suture", isCorrect: true },
+            { id: "inst6", name: "Gloves", isCorrect: true },
+            { id: "inst7", name: "Betadine", isCorrect: true },
+            { id: "inst8", name: "Gauzes", isCorrect: true },
+            { id: "inst9", name: "Dressing-pad", isCorrect: true },
+            { id: "inst10", name: "Adhesive Bandage", isCorrect: true },
+            { id: "inst11", name: "Scalpel Handle", isCorrect: true },
+            { id: "inst12", name: "Babcock Forceps", isCorrect: true },
+            { id: "inst13", name: "Allis Forceps", isCorrect: true },
+            { id: "inst14", name: "Sponge Holding Forceps", isCorrect: true },
+            // Incorrect Items List Configuration Arrays
+            { id: "inst15", name: "PoP Cast", isCorrect: false },
+            { id: "inst16", name: "Doyens Retractor", isCorrect: false },
+            { id: "inst17", name: "Periosteum", isCorrect: false },
+            { id: "inst18", name: "Reamer", isCorrect: false }
         ];
 
         let timerInterval = null;
@@ -435,12 +441,12 @@
 
         function initGameView(procedure) {
             const workspace = document.getElementById('game-workspace');
-            if(procedure === 'clw') {
+            if(procedure === 'appendectomy') {
                 workspace.style.display = 'block';
                 resetGameEngine();
             } else {
                 workspace.style.display = 'none';
-                if(procedure !== '') alert("This option is locked in prototype mode.");
+                if(procedure !== '') alert("This setup category layout is locked in current build environment.");
             }
         }
 
@@ -454,16 +460,14 @@
             document.getElementById('score-val').innerText = runningScore;
             document.getElementById('start-control-box').style.display = 'block';
             
-            // Clear Trolley element nodes, retaining label text template
             const trolley = document.getElementById('trolley');
             trolley.innerHTML = '<div class="trolley-label">Surgical Trolley</div>';
             trolley.classList.remove('drag-over');
 
-            // Generate items bank randomly distributed
             const bank = document.getElementById('bank');
             bank.innerHTML = '';
             
-            // Shallow clone array and apply Fisher-Yates shuffle variation
+            // Random Shuffle Engine via basic sort permutation
             let shuffledItems = [...gameItemsData].sort(() => Math.random() - 0.5);
             
             shuffledItems.forEach(item => {
@@ -471,10 +475,9 @@
                 element.className = 'drag-item';
                 element.id = item.id;
                 element.innerText = item.name;
-                element.setAttribute('draggable', 'false'); // Controlled via state configuration
+                element.setAttribute('draggable', 'false');
                 element.dataset.correct = item.isCorrect;
                 
-                // Native desktop cursor action attachment points
                 element.ondragstart = dragStart;
                 bank.appendChild(element);
             });
@@ -486,22 +489,20 @@
             gameActive = true;
             document.getElementById('start-control-box').style.display = 'none';
             
-            // Enable dragging across generated dom child structures
             const elements = document.querySelectorAll('.drag-item');
             elements.forEach(el => el.setAttribute('draggable', 'true'));
 
-            // Ticker execution loop mapping
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer-val').innerText = timeLeft;
                 
                 if(timeLeft <= 0) {
-                    endGame(false);
+                    endGame();
                 }
             }, 1000);
         }
 
-        function endGame(terminatedEarly = false) {
+        function endGame() {
             clearInterval(timerInterval);
             gameActive = false;
             
@@ -509,12 +510,12 @@
             elements.forEach(el => el.setAttribute('draggable', 'false'));
 
             setTimeout(() => {
-                alert(`Game Over! Setup complete.\nYour total score for CLW Suturing setup is: ${runningScore} points.`);
+                alert(`Game Over!\nYour final configuration score for the Appendectomy Trolley setup is: ${runningScore} points.`);
                 resetGameEngine();
             }, 100);
         }
 
-        /* Drag and Drop Events Engine */
+        /* Native Browser Drag API Events Mapping Operations */
         function dragStart(event) {
             if(!gameActive) {
                 event.preventDefault();
@@ -543,17 +544,15 @@
             const id = event.dataTransfer.getData("text/plain");
             const element = document.getElementById(id);
             
-            // Ensure drop targeting references container scope boundaries
             if(element && !trolley.contains(element)) {
                 trolley.appendChild(element);
                 
-                // Score calculations calculation evaluation
                 if(element.dataset.correct === "true") {
                     runningScore += 1;
-                    element.style.borderColor = "#00cc00"; // Accent green highlighting validation
+                    element.style.borderColor = "#00cc00"; // Green validation highlight
                 } else {
-                    runningScore -= 1; // Negative tracking evaluation condition bounds
-                    element.style.borderColor = "#ff0000"; // Accent red invalid warning trace marks
+                    runningScore -= 1; 
+                    element.style.borderColor = "#ff0000"; // Red validation error flash
                 }
                 document.getElementById('score-val').innerText = runningScore;
             }
