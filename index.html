@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayur-Shalya-Guide</title>
     <style>
-        /* Styling for a premium, traditional medical guide feel */
+        /* Base Styling */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
             background-color: #fcfbfa;
@@ -22,11 +26,11 @@
             padding: 40px 20px;
             width: 100%;
             background-color: #fff;
-            border-bottom: 3px double #800020; /* Maroon accent */
+            border-bottom: 3px double #800020;
         }
 
         h1 {
-            color: #800020; /* Maroon (Alternative: #000080 for Navy Blue) */
+            color: #800020;
             font-size: 3rem;
             margin: 0 0 10px 0;
             letter-spacing: 1px;
@@ -38,7 +42,7 @@
             margin: 0;
         }
 
-        /* Main Navigation Tabs */
+        /* Navigation Tabs */
         .tabs-container {
             display: flex;
             justify-content: center;
@@ -85,7 +89,6 @@
             display: block;
         }
 
-        /* Sub-options Button Styling */
         .option-group {
             display: flex;
             gap: 20px;
@@ -94,7 +97,7 @@
 
         .option-btn {
             font-family: 'Georgia', serif;
-            background-color: #000080; /* Navy Blue for secondary actions */
+            background-color: #000080;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -108,7 +111,6 @@
             background-color: #00004d;
         }
 
-        /* Dropdown Styling */
         select {
             font-family: 'Georgia', serif;
             padding: 10px;
@@ -118,38 +120,6 @@
             border-radius: 4px;
             width: 100%;
             max-width: 300px;
-        }
-
-        /* Instrument Grid Display */
-        .instrument-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .instrument-card {
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        .instrument-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
-            background: #fff;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .instrument-card h4 {
-            margin: 10px 0 0 0;
-            color: #333;
-            font-size: 1.1rem;
         }
 
         .back-btn {
@@ -163,6 +133,133 @@
             margin-bottom: 15px;
             display: inline-block;
         }
+
+        /* Instrument Tab Grid */
+        .instrument-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .instrument-card {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .instrument-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        /* GAME SPECIFIC STYLING */
+        .game-dashboard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .timer-box { color: #cc0000; }
+        .score-box { color: #006600; }
+
+        /* The Green Surgical Trolley */
+        .trolley-zone {
+            width: 100%;
+            height: 250px;
+            background-color: #2e6f40; /* Surgical Green Color */
+            border: 6px solid #b0b0b0; /* Metallic frame look */
+            border-radius: 8px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .trolley-zone.drag-over {
+            background-color: #3b8a50;
+        }
+
+        .trolley-label {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.5rem;
+            font-style: italic;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Item Bank Container */
+        .item-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+
+        /* Draggable Label Items */
+        .drag-item {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #aaa;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: grab;
+            font-size: 0.95rem;
+            user-select: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            transition: transform 0.1s;
+        }
+
+        .drag-item:active {
+            cursor: grabbing;
+            transform: scale(0.95);
+        }
+
+        /* Placed Items Modifiers */
+        .trolley-zone .drag-item {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: #2e6f40;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .start-btn {
+            font-family: 'Georgia', serif;
+            background-color: #800020;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .start-btn:hover {
+            background-color: #590016;
+        }
     </style>
 </head>
 <body>
@@ -175,7 +272,7 @@
     <div class="tabs-container">
         <button class="tab-btn" onclick="openTab('instruments')">Instruments</button>
         <button class="tab-btn" onclick="openTab('procedures')">Procedures</button>
-        <button class="tab-btn" onclick="openTab('games')">Games</button>
+        <button class="tab-btn" id="games-tab-nav" onclick="openTab('games')">Games</button>
         <button class="tab-btn" onclick="openTab('quizzes')">Quizzes</button>
     </div>
 
@@ -231,48 +328,76 @@
                 </div>
             </div>
         </div>
-        
         <div id="other-procedure-placeholder" style="display: none; margin-top: 20px; color: #666; font-style: italic;">
             Instrument list for this procedure is under development for the prototype.
         </div>
     </div>
 
     <div id="procedures" class="window"><h2>Procedures</h2><p>Content coming soon...</p></div>
-    <div id="games" class="window"><h2>Games</h2><p>Content coming soon...</p></div>
+
+    <div id="games" class="window">
+        <h2>Surgical Setup Arena</h2>
+        <p>Test your speed and accuracy in preparing surgical instrument trays.</p>
+        
+        <label for="game-procedure-select">Select Procedure Setup:</label><br>
+        <select id="game-procedure-select" onchange="initGameView(this.value)">
+            <option value="">-- Choose a Procedure --</option>
+            <option value="clw">Suturing of CLW (Clean Lacerated Wound)</option>
+            <option value="other">Lap. Cholecystectomy (Locked)</option>
+        </select>
+
+        <div id="game-workspace" style="display: none; margin-top: 25px;">
+            <div class="game-dashboard">
+                <div class="timer-box">Time Remaining: <span id="timer-val">30</span>s</div>
+                <div class="score-box">Score: <span id="score-val">0</span></div>
+            </div>
+
+            <div style="text-align: center;" id="start-control-box">
+                <button class="start-btn" onclick="startGame()">Start Game</button>
+            </div>
+
+            <div class="trolley-zone" id="trolley" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">
+                <div class="trolley-label">Surgical Trolley</div>
+            </div>
+
+            <h3>Available Elements Bank</h3>
+            <p style="font-size: 0.9rem; margin: 0 0 10px 0; color: #666;">Drag correct items onto the green trolley before time runs out:</p>
+            <div class="item-bank" id="bank">
+                </div>
+        </div>
+    </div>
+
     <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
 
     <script>
-        // Handles switching between the main top navigation tabs
+        /* MAIN NAVIGATION CONTROLLER */
         function openTab(tabId) {
-            // Hide all windows
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
             
-            // Remove active class from all top buttons
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Show current window
             const targetWindow = document.getElementById(tabId);
             if(targetWindow) targetWindow.classList.add('active');
             
-            // Highlight active tab button
-            event.currentTarget.classList.add('active');
+            // Handle cross-tab manual activation visualization 
+            if(event && event.currentTarget && event.currentTarget.classList) {
+                event.currentTarget.classList.add('active');
+            } else {
+                document.getElementById('games-tab-nav').classList.add('active');
+            }
         }
 
-        // Handles opening deep nested windows/views
         function openSubWindow(subWindowId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
-
             document.getElementById(subWindowId).classList.add('active');
         }
 
-        // Handles dropdown logic
         function handleProcedureChange(value) {
             const appendicectomyDiv = document.getElementById('appendicectomy-results');
             const placeholderDiv = document.getElementById('other-procedure-placeholder');
-
             if (value === 'appendicectomy') {
                 appendicectomyDiv.style.display = 'block';
                 placeholderDiv.style.display = 'none';
@@ -282,6 +407,155 @@
             } else {
                 appendicectomyDiv.style.display = 'none';
                 placeholderDiv.style.display = 'block';
+            }
+        }
+
+        /* DRAG AND DROP GAME SYSTEM LOGIC */
+        const gameItemsData = [
+            { id: "item1", name: "Mosquito Forceps", isCorrect: true },
+            { id: "item2", name: "Dissecting Forceps", isCorrect: true },
+            { id: "item3", name: "Needle Holder", isCorrect: true },
+            { id: "item4", name: "Scissors", isCorrect: true },
+            { id: "item5", name: "Suture", isCorrect: true },
+            { id: "item6", name: "Gloves", isCorrect: true },
+            { id: "item7", name: "Betadine", isCorrect: true },
+            { id: "item8", name: "Gauzes", isCorrect: true },
+            { id: "item9", name: "Dressing-pad", isCorrect: true },
+            { id: "item10", name: "Adhesive Bandage", isCorrect: true },
+            { id: "item11", name: "Allis Forceps", isCorrect: false },
+            { id: "item12", name: "PoP Cast", isCorrect: false },
+            { id: "item13", name: "Babcock Forceps", isCorrect: false },
+            { id: "item14", name: "Suture Cutting Scissors", isCorrect: false }
+        ];
+
+        let timerInterval = null;
+        let timeLeft = 30;
+        let runningScore = 0;
+        let gameActive = false;
+
+        function initGameView(procedure) {
+            const workspace = document.getElementById('game-workspace');
+            if(procedure === 'clw') {
+                workspace.style.display = 'block';
+                resetGameEngine();
+            } else {
+                workspace.style.display = 'none';
+                if(procedure !== '') alert("This option is locked in prototype mode.");
+            }
+        }
+
+        function resetGameEngine() {
+            clearInterval(timerInterval);
+            timeLeft = 30;
+            runningScore = 0;
+            gameActive = false;
+            
+            document.getElementById('timer-val').innerText = timeLeft;
+            document.getElementById('score-val').innerText = runningScore;
+            document.getElementById('start-control-box').style.display = 'block';
+            
+            // Clear Trolley element nodes, retaining label text template
+            const trolley = document.getElementById('trolley');
+            trolley.innerHTML = '<div class="trolley-label">Surgical Trolley</div>';
+            trolley.classList.remove('drag-over');
+
+            // Generate items bank randomly distributed
+            const bank = document.getElementById('bank');
+            bank.innerHTML = '';
+            
+            // Shallow clone array and apply Fisher-Yates shuffle variation
+            let shuffledItems = [...gameItemsData].sort(() => Math.random() - 0.5);
+            
+            shuffledItems.forEach(item => {
+                const element = document.createElement('div');
+                element.className = 'drag-item';
+                element.id = item.id;
+                element.innerText = item.name;
+                element.setAttribute('draggable', 'false'); // Controlled via state configuration
+                element.dataset.correct = item.isCorrect;
+                
+                // Native desktop cursor action attachment points
+                element.ondragstart = dragStart;
+                bank.appendChild(element);
+            });
+        }
+
+        function startGame() {
+            if(gameActive) return;
+            
+            gameActive = true;
+            document.getElementById('start-control-box').style.display = 'none';
+            
+            // Enable dragging across generated dom child structures
+            const elements = document.querySelectorAll('.drag-item');
+            elements.forEach(el => el.setAttribute('draggable', 'true'));
+
+            // Ticker execution loop mapping
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer-val').innerText = timeLeft;
+                
+                if(timeLeft <= 0) {
+                    endGame(false);
+                }
+            }, 1000);
+        }
+
+        function endGame(terminatedEarly = false) {
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            const elements = document.querySelectorAll('.drag-item');
+            elements.forEach(el => el.setAttribute('draggable', 'false'));
+
+            setTimeout(() => {
+                alert(`Game Over! Setup complete.\nYour total score for CLW Suturing setup is: ${runningScore} points.`);
+                resetGameEngine();
+            }, 100);
+        }
+
+        /* Drag and Drop Events Engine */
+        function dragStart(event) {
+            if(!gameActive) {
+                event.preventDefault();
+                return;
+            }
+            event.dataTransfer.setData("text/plain", event.target.id);
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+            if(!gameActive) return;
+            document.getElementById('trolley').classList.add('drag-over');
+        }
+
+        function dragLeave(event) {
+            document.getElementById('trolley').classList.remove('drag-over');
+        }
+
+        function dropItem(event) {
+            event.preventDefault();
+            const trolley = document.getElementById('trolley');
+            trolley.classList.remove('drag-over');
+
+            if(!gameActive) return;
+
+            const id = event.dataTransfer.getData("text/plain");
+            const element = document.getElementById(id);
+            
+            // Ensure drop targeting references container scope boundaries
+            if(element && !trolley.contains(element)) {
+                trolley.appendChild(element);
+                
+                // Score calculations calculation evaluation
+                if(element.dataset.correct === "true") {
+                    runningScore += 1;
+                    element.style.borderColor = "#00cc00"; // Accent green highlighting validation
+                } else {
+                    runningScore -= 1; // Negative tracking evaluation condition bounds
+                    element.style.borderColor = "#ff0000"; // Accent red invalid warning trace marks
+                }
+                document.getElementById('score-val').innerText = runningScore;
             }
         }
     </script>
