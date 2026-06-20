@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayur-Shalya-Guide</title>
     <style>
-        /* Base Structural Reset & Typography */
+        /* Base Setup & Premium Serif Styling */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -26,7 +26,7 @@
             padding: 40px 20px;
             width: 100%;
             background-color: #fff;
-            border-bottom: 3px double #800020;
+            border-bottom: 3px double #800020; /* Deep Maroon */
         }
 
         h1 {
@@ -42,7 +42,7 @@
             margin: 0;
         }
 
-        /* Top Navigation Menu Tabs */
+        /* Top Tab Navigation */
         .tabs-container {
             display: flex;
             justify-content: center;
@@ -72,7 +72,7 @@
             color: #fff;
         }
 
-        /* Display Content Windows */
+        /* Main Display Windows */
         .window {
             display: none;
             width: 90%;
@@ -97,7 +97,7 @@
 
         .option-btn {
             font-family: 'Georgia', serif;
-            background-color: #000080;
+            background-color: #000080; /* Navy Blue */
             color: white;
             border: none;
             padding: 12px 20px;
@@ -134,7 +134,7 @@
             display: inline-block;
         }
 
-        /* Instruments Tab Display Layout */
+        /* Instruments Tab Grid Layout */
         .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,7 +156,7 @@
             object-fit: contain;
         }
 
-        /* INTERACTIVE GAME UI STYLING */
+        /* INTERACTIVE SURGICAL GAME SYSTEM STYLING */
         .game-dashboard {
             display: flex;
             justify-content: space-between;
@@ -172,12 +172,12 @@
         .timer-box { color: #cc0000; }
         .score-box { color: #006600; }
 
-        /* The Clinical Green Surgical Instrument Trolley Workspace */
+        /* The Metallic Frame Green Surgical Trolley Workspace */
         .trolley-zone {
             width: 100%;
             height: 280px;
-            background-color: #2e6f40; /* Traditional Surgical Green Backdrop */
-            border: 6px solid #b0b0b0; /* Metallic finish rim look */
+            background-color: #2e6f40; /* Distinctive Surgical Theater Green */
+            border: 6px solid #b0b0b0; /* Stainless steel bumper look */
             border-radius: 8px;
             box-shadow: inset 0 0 25px rgba(0,0,0,0.45);
             display: flex;
@@ -198,7 +198,7 @@
             position: absolute;
             bottom: 15px;
             right: 20px;
-            color: rgba(255, 255, 255, 0.45);
+            color: rgba(255, 255, 255, 0.4);
             font-size: 1.6rem;
             font-style: italic;
             pointer-events: none;
@@ -270,6 +270,7 @@
         <p class="subtitle">An Interactive Surgical Companion</p>
     </header>
 
+    <!-- Top Menu Row Tabs -->
     <div class="tabs-container">
         <button class="tab-btn" onclick="openTab('instruments')">Instruments</button>
         <button class="tab-btn" onclick="openTab('procedures')">Procedures</button>
@@ -277,6 +278,7 @@
         <button class="tab-btn" onclick="openTab('quizzes')">Quizzes</button>
     </div>
 
+    <!-- WINDOW 1: INSTRUMENTS -->
     <div id="instruments" class="window">
         <h2>Instruments</h2>
         <p>Select a category to explore surgical instruments:</p>
@@ -334,20 +336,24 @@
         </div>
     </div>
 
+    <!-- WINDOW 2: PROCEDURES -->
     <div id="procedures" class="window"><h2>Procedures</h2><p>Content coming soon...</p></div>
 
+    <!-- WINDOW 3: GAMES (DYNAMIC MULTI-GAME SELECTION WORKSPACE) -->
     <div id="games" class="window">
         <h2>Surgical Setup Arena</h2>
-        <p>Test your speed and accuracy in preparing surgical instrument trays.</p>
+        <p>Test your speed and precision in managing clinical tool allocations.</p>
         
         <label for="game-procedure-select">Select Procedure Setup:</label><br>
         <select id="game-procedure-select" onchange="initGameView(this.value)">
             <option value="">-- Choose a Procedure --</option>
-            <option value="appendectomy">Appendectomy Setup</option>
-            <option value="other">Lap. Cholecystectomy (Locked)</option>
+            <option value="clw">Suturing of CLW (Clean Lacerated Wound)</option>
+            <option value="appendectomy">Appendectomy Surgery Setup</option>
         </select>
 
+        <!-- Dynamic Game Workspace Container -->
         <div id="game-workspace" style="display: none; margin-top: 25px;">
+            <h3 id="current-game-title" style="color: #800020; margin-bottom: 5px;">Procedure Game</h3>
             <div class="game-dashboard">
                 <div class="timer-box">Time Remaining: <span id="timer-val">30</span>s</div>
                 <div class="score-box">Score: <span id="score-val">0</span></div>
@@ -357,21 +363,25 @@
                 <button class="start-btn" onclick="startGame()">Start Game</button>
             </div>
 
+            <!-- Green Surgical Instrument Trolley Box Graphic Asset -->
             <div class="trolley-zone" id="trolley" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">
                 <div class="trolley-label">Surgical Trolley</div>
             </div>
 
+            <!-- Interactive Elements Storage Bank Shelf -->
             <h3>Available Elements Bank</h3>
             <p style="font-size: 0.9rem; margin: 0 0 10px 0; color: #666;">Drag correct items onto the green trolley before time runs out:</p>
             <div class="item-bank" id="bank">
-                </div>
+                <!-- Populated dynamically via current module payload matrix -->
+            </div>
         </div>
     </div>
 
+    <!-- WINDOW 4: QUIZZES -->
     <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
 
     <script>
-        /* MAIN APPLICATION TAB ROUTING NAVIGATION MODULE */
+        /* CORE APPLICATION NAVIGATION ENGINE LAYERS */
         function openTab(tabId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
@@ -410,43 +420,69 @@
             }
         }
 
-        /* GAME DRAG MECHANICS ENGINE MATRIX SETUP */
-        const gameItemsData = [
-            // Correct Items List Configuration Arrays
-            { id: "inst1", name: "Mosquito Forceps", isCorrect: true },
-            { id: "inst2", name: "Dissecting Forceps", isCorrect: true },
-            { id: "inst3", name: "Needle Holder", isCorrect: true },
-            { id: "inst4", name: "Scissors", isCorrect: true },
-            { id: "inst5", name: "Suture", isCorrect: true },
-            { id: "inst6", name: "Gloves", isCorrect: true },
-            { id: "inst7", name: "Betadine", isCorrect: true },
-            { id: "inst8", name: "Gauzes", isCorrect: true },
-            { id: "inst9", name: "Dressing-pad", isCorrect: true },
-            { id: "inst10", name: "Adhesive Bandage", isCorrect: true },
-            { id: "inst11", name: "Scalpel Handle", isCorrect: true },
-            { id: "inst12", name: "Babcock Forceps", isCorrect: true },
-            { id: "inst13", name: "Allis Forceps", isCorrect: true },
-            { id: "inst14", name: "Sponge Holding Forceps", isCorrect: true },
-            // Incorrect Items List Configuration Arrays
-            { id: "inst15", name: "PoP Cast", isCorrect: false },
-            { id: "inst16", name: "Doyens Retractor", isCorrect: false },
-            { id: "inst17", name: "Periosteum", isCorrect: false },
-            { id: "inst18", name: "Reamer", isCorrect: false }
-        ];
+        /* INTEGRATED MASTER GAMES DICTIONARY MAP */
+        const datasets = {
+            clw: {
+                title: "Setup Task: Suturing of CLW",
+                items: [
+                    { id: "c1", name: "Mosquito Forceps", isCorrect: true },
+                    { id: "c2", name: "Dissecting Forceps", isCorrect: true },
+                    { id: "c3", name: "Needle Holder", isCorrect: true },
+                    { id: "c4", name: "Scissors", isCorrect: true },
+                    { id: "c5", name: "Suture", isCorrect: true },
+                    { id: "c6", name: "Gloves", isCorrect: true },
+                    { id: "c7", name: "Betadine", isCorrect: true },
+                    { id: "c8", name: "Gauzes", isCorrect: true },
+                    { id: "c9", name: "Dressing-pad", isCorrect: true },
+                    { id: "c10", name: "Adhesive Bandage", isCorrect: true },
+                    { id: "c11", name: "Allis Forceps", isCorrect: false },
+                    { id: "c12", name: "PoP Cast", isCorrect: false },
+                    { id: "c13", name: "Babcock Forceps", isCorrect: false },
+                    { id: "c14", name: "Suture Cutting Scissors", isCorrect: false }
+                ]
+            },
+            appendectomy: {
+                title: "Setup Task: Appendectomy Surgery",
+                items: [
+                    { id: "a1", name: "Mosquito Forceps", isCorrect: true },
+                    { id: "a2", name: "Dissecting Forceps", isCorrect: true },
+                    { id: "a3", name: "Needle Holder", isCorrect: true },
+                    { id: "a4", name: "Scissors", isCorrect: true },
+                    { id: "a5", name: "Suture", isCorrect: true },
+                    { id: "a6", name: "Gloves", isCorrect: true },
+                    { id: "a7", name: "Betadine", isCorrect: true },
+                    { id: "a8", name: "Gauzes", isCorrect: true },
+                    { id: "a9", name: "Dressing-pad", isCorrect: true },
+                    { id: "a10", name: "Adhesive Bandage", isCorrect: true },
+                    { id: "a11", name: "Scalpel Handle", isCorrect: true },
+                    { id: "a12", name: "Babcock Forceps", isCorrect: true },
+                    { id: "a13", name: "Allis Forceps", isCorrect: true },
+                    { id: "a14", name: "Sponge Holding Forceps", isCorrect: true },
+                    { id: "a15", name: "PoP Cast", isCorrect: false },
+                    { id: "a16", name: "Doyens Retractor", isCorrect: false },
+                    { id: "a17", name: "Periosteum", isCorrect: false },
+                    { id: "a18", name: "Reamer", isCorrect: false }
+                ]
+            }
+        };
 
         let timerInterval = null;
         let timeLeft = 30;
         let runningScore = 0;
         let gameActive = false;
+        let activeMode = "";
 
         function initGameView(procedure) {
             const workspace = document.getElementById('game-workspace');
-            if(procedure === 'appendectomy') {
+            if (procedure in datasets) {
+                activeMode = procedure;
                 workspace.style.display = 'block';
+                document.getElementById('current-game-title').innerText = datasets[procedure].title;
                 resetGameEngine();
             } else {
                 workspace.style.display = 'none';
-                if(procedure !== '') alert("This setup category layout is locked in current build environment.");
+                activeMode = "";
+                clearInterval(timerInterval);
             }
         }
 
@@ -467,8 +503,9 @@
             const bank = document.getElementById('bank');
             bank.innerHTML = '';
             
-            // Random Shuffle Engine via basic sort permutation
-            let shuffledItems = [...gameItemsData].sort(() => Math.random() - 0.5);
+            // Generate a random dynamic shuffle distribution out of our arrays
+            let activeItems = [...datasets[activeMode].items];
+            let shuffledItems = activeItems.sort(() => Math.random() - 0.5);
             
             shuffledItems.forEach(item => {
                 const element = document.createElement('div');
@@ -510,12 +547,12 @@
             elements.forEach(el => el.setAttribute('draggable', 'false'));
 
             setTimeout(() => {
-                alert(`Game Over!\nYour final configuration score for the Appendectomy Trolley setup is: ${runningScore} points.`);
+                alert(`Time is up!\nYour final trolley configuration score for this procedure is: ${runningScore} points.`);
                 resetGameEngine();
             }, 100);
         }
 
-        /* Native Browser Drag API Events Mapping Operations */
+        /* HTML5 Native Drag & Drop API Handlers */
         function dragStart(event) {
             if(!gameActive) {
                 event.preventDefault();
@@ -549,10 +586,10 @@
                 
                 if(element.dataset.correct === "true") {
                     runningScore += 1;
-                    element.style.borderColor = "#00cc00"; // Green validation highlight
+                    element.style.borderColor = "#00cc00"; /* Highlight Green */
                 } else {
                     runningScore -= 1; 
-                    element.style.borderColor = "#ff0000"; // Red validation error flash
+                    element.style.borderColor = "#ff0000"; /* Highlight Red */
                 }
                 document.getElementById('score-val').innerText = runningScore;
             }
