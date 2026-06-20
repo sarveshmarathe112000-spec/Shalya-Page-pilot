@@ -42,14 +42,14 @@
             margin: 0;
         }
 
-        /* Top Tier Main Navigation */
+        /* Top Tier Main Navigation Tabs */
         .tabs-container {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin: 30px 0;
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             padding: 0 20px;
         }
 
@@ -76,7 +76,7 @@
         .window {
             display: none;
             width: 90%;
-            max-width: 950px;
+            max-width: 1000px;
             background: #fff;
             padding: 30px;
             border-radius: 8px;
@@ -134,14 +134,14 @@
             display: inline-block;
         }
 
-        /* HORIZONTAL YANTRA SUB-TABS MATRIX STYLE */
+        /* HORIZONTAL YANTRA SUB-TABS INTERFACE matrix */
         .yantra-subtabs-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             margin: 20px 0;
             border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .yantra-sub-btn {
@@ -149,8 +149,8 @@
             background-color: #f5f5f5;
             border: 1px solid #ccc;
             color: #333;
-            padding: 8px 14px;
-            font-size: 0.9rem;
+            padding: 8px 12px;
+            font-size: 0.85rem;
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.2s ease;
@@ -175,7 +175,7 @@
             display: block;
         }
 
-        /* Sanskrit Shloka Verse Styling Box */
+        /* Sanskrit Shloka Verse Framework Styling */
         .shloka-box {
             background-color: #f5ece9;
             border-left: 4px solid #800020;
@@ -188,7 +188,7 @@
             text-align: center;
         }
 
-        /* Data Presentation Grid & Tables */
+        /* Presentation Data Grids */
         .acharya-table-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -212,6 +212,27 @@
             padding-bottom: 8px;
         }
 
+        .grid-list-2-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 10px;
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .grid-list-2-col li {
+            background: #fff;
+            padding: 10px 14px;
+            border: 1px solid #eee;
+            border-left: 3px solid #cc0000;
+            border-radius: 2px;
+        }
+
+        .grid-list-2-col.karma-list li {
+            border-left-color: #000080; /* Navy accent for actions */
+        }
+
         ol, ul {
             padding-left: 20px;
             line-height: 1.5;
@@ -221,7 +242,7 @@
             margin-bottom: 6px;
         }
 
-        /* INSTRUMENT GRID */
+        /* INSTRUMENT TAB CARDS GRID STYLE */
         .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -243,7 +264,7 @@
             object-fit: contain;
         }
 
-        /* INTERACTIVE GAME UI STYLING */
+        /* GAME MODULE STYLING DASHBOARD */
         .game-dashboard {
             display: flex;
             justify-content: space-between;
@@ -262,8 +283,8 @@
         .trolley-zone {
             width: 100%;
             height: 280px;
-            background-color: #2e6f40;
-            border: 6px solid #b0b0b0;
+            background-color: #2e6f40; /* Clinical Theatre Green Backdrop */
+            border: 6px solid #b0b0b0; /* Metallic finish */
             border-radius: 8px;
             box-shadow: inset 0 0 25px rgba(0,0,0,0.45);
             display: flex;
@@ -273,6 +294,7 @@
             padding: 20px;
             margin: 20px 0;
             position: relative;
+            transition: background-color 0.2s;
         }
 
         .trolley-zone.drag-over {
@@ -351,7 +373,7 @@
 
     <div id="instruments" class="window active">
         <h2>Instruments Knowledge Center</h2>
-        <p>Select an administrative operational class branch to evaluate classical scriptural architecture:</p>
+        <p>Select an administrative operational branch to view classical architecture parameters:</p>
         <div class="option-group">
             <button class="option-btn" onclick="openSubWindow('yantra-content')">Yantra Exploration Base</button>
             <button class="option-btn" onclick="openSubWindow('shastra-content')">Shastra Exploration Base</button>
@@ -361,7 +383,7 @@
     <div id="yantra-content" class="window">
         <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments Core</button>
         <h2>Yantra (Surgical Blunt Instruments Compendium)</h2>
-        <p>Toggle across the structural matrices below to evaluate classical surgical definitions, groups, metrics, and parameters:</p>
+        <p>Toggle across the structural matrices below to evaluate classical surgical dimensions, groups, metrics, and parameters:</p>
 
         <div class="yantra-subtabs-container">
             <button class="yantra-sub-btn active" onclick="openYantraPanel(event, 'yantra-def')">Yantra Definition</button>
@@ -371,11 +393,12 @@
             <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-akriti')">Yantra Akriti (Shape)</button>
             <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-guna')">Yantra Guna (Qualities)</button>
             <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-dosha')">Yantra Dosha (Flaws)</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-prashastra')">Prashastra Yantra</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-karma')">Yantra Samanya Karma</button>
         </div>
 
         <div id="yantra-def" class="yantra-panel active">
             <h3>Yantra Definition</h3>
-            <p>The operational surgical definition of Yantra from the classical texts is declared as follows:</p>
             <div class="shloka-box">
                 तत्र, मनःशरीराबाधकराणि शल्यानि; तेषामाहरणोपायो यन्त्राणि ||४||
             </div>
@@ -384,8 +407,7 @@
 
         <div id="yantra-types" class="yantra-panel">
             <h3>Yantra Types (Sankhya System)</h3>
-            <p>A multi-disciplinary structural view of instrument classification arrays according to the three foundational pillars of classical Shalya system research:</p>
-            
+            <p>A multi-disciplinary structural view of instrument classification arrays according to the foundational classical texts:</p>
             <div class="acharya-table-grid">
                 <div class="acharya-card">
                     <h4>Acharya Sushruth (101 Total)</h4>
@@ -399,9 +421,9 @@
                     </ol>
                 </div>
                 <div class="acharya-card">
-                    <h4>Ashtang Sangraha (Vagbhatta)</h4>
+                    <h4>According to Ashtang Sangraha</h4>
                     <ol>
-                        <li><strong>Swastik Yantra</strong> (Cruciform Architecture)</li>
+                        <li><strong>Swatik Yantra</strong> (Cruciform Architecture)</li>
                         <li><strong>Sandansh Yantra</strong> (Pincers and Forceps)</li>
                         <li><strong>Taal Yantra</strong> (Spoon-shaped Speculums)</li>
                         <li><strong>Naadi Yantra</strong> (Tubular Channels)</li>
@@ -410,7 +432,7 @@
                     </ol>
                 </div>
                 <div class="acharya-card">
-                    <h4>Harit Samhita Array</h4>
+                    <h4>According to Harit Samhita</h4>
                     <ol>
                         <li>Godhamukha</li>
                         <li>Vajramukha</li>
@@ -444,19 +466,19 @@
             <p>Surgical instruments are forged or extracted out of premium biocompatible raw components:</p>
             <div class="acharya-table-grid" style="grid-template-columns: 1fr 1fr;">
                 <div>
-                    <h4>Metallic Compounds</h4>
+                    <h4>1) Metallic Compounds</h4>
                     <ul>
-                        <li><strong>Loha:</strong> Iron / Surgical Steels (Primary choice for structural cutting edge/rigidity)</li>
-                        <li><strong>Suvarna:</strong> Gold (Highly resistant to corrosion, non-reactive)</li>
-                        <li><strong>Rajat:</strong> Silver (Natural anti-microbial agent properties)</li>
-                        <li><strong>Tamra:</strong> Copper (Alloying and specific thermal properties)</li>
+                        <li><strong>Loha (Iron):</strong> Surgical Steels (Primary choice for structural cutting edge/rigidity)</li>
+                        <li><strong>Suvarna (Gold):</strong> Highly resistant to corrosion, non-reactive</li>
+                        <li><strong>Rajat (Silver):</strong> Natural anti-microbial agent properties</li>
+                        <li><strong>Tamra (Copper):</strong> Alloying and specific thermal properties</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Natural Organic Elements</h4>
+                    <h4>2) Natural Organic Elements</h4>
                     <ul>
-                        <li><strong>Shrunga:</strong> Animal Horn (Flexible, lightweight retraction tools)</li>
-                        <li><strong>Gajadanta:</strong> Elephant Ivory/Tusk (Extremely dense, durable, smooth texture crafting material)</li>
+                        <li><strong>Shrunga (Horn):</strong> Animal Horn (Flexible, lightweight retraction tools)</li>
+                        <li><strong>Gajadanta (Tusk of Elephant):</strong> Ivory/Tusk (Extremely dense, durable, smooth texture crafting material)</li>
                     </ul>
                 </div>
             </div>
@@ -464,61 +486,117 @@
 
         <div id="yantra-akriti" class="yantra-panel">
             <h3>Yantra Akriti (Biomimetic Morphology & Shapes)</h3>
-            <p>The morphology and operational heads of surgical instruments are heavily inspired by nature:</p>
             <blockquote style="border-left: 4px solid #000080; padding-left: 15px; margin: 0; font-style: italic; background: #fff; padding: 15px;">
-                "Yantra operational heads are structurally designed to replicate the mouth shapes of aggressive animals, predatory birds, and wild deer."
+                "Yantra are mainly according to Shape of mouth of various violent and aggressive animals, birds and deer."
             </blockquote>
-            <p style="margin-top: 15px;">This ensures that the gripping mechanism, pressure vectors, and surface area ratios match the precise kinetic hold required for surgical extractions.</p>
+            <p style="margin-top: 15px;">This template deployment dynamic provides mechanical advantage patterns across unique anatomical surface areas during tissue manipulation operations.</p>
         </div>
 
         <div id="yantra-guna" class="yantra-panel">
-            <h3>Yantra Guna (Structural Virtues of an Ideal Instrument)</h3>
-            <p>The golden canonical scriptural metric defining standard mechanical compliance tolerances:</p>
+            <h3>Yantra Guna (Qualities of Ideal Yantra)</h3>
             <div class="shloka-box">
                 समाहितानि यन्त्राणि खरश्लक्ष्णमुखानि च |<br>
                 सुदृढानि सुरूपाणि सुग्रहाणि च कारयेत् ||९||
             </div>
             <p>Every ideal tool must fulfill these six strict mechanical attributes:</p>
             <ol>
-                <li><strong>Samahitani:</strong> Perfectly centered alignment and equal balancing of the functional halves.</li>
-                <li><strong>Khara-mukha:</strong> Corrugated, serrated, or furrowed jaws to securely grip target tissue without slipping.</li>
-                <li><strong>Shlakshna-mukha:</strong> Micro-polished, smooth surface elements where contact points must minimize friction.</li>
-                <li><strong>Surupa:</strong> Proportionate, well-shaped ergonomics that fit human anatomy accurately.</li>
-                <li><strong>Sudrudha:</strong> Built highly robust, thick-walled, and structurally resilient against material fatigue.</li>
-                <li><strong>Sugraha:</strong> Ergonomic configurations that allow an operator to hold and maneuver the tool with high manual control.</li>
+                <li><strong>Samahitani (Equally Aligned):</strong> Perfectly centered alignment and equal balancing of functional halves.</li>
+                <li><strong>Khara mukha (Furrowed):</strong> Corrugated or serrated jaws to securely grip target tissue profiles without slipping.</li>
+                <li><strong>Shlakshna Mukha (Smooth):</strong> Micro-polished smooth processing vectors where contact must avoid scraping.</li>
+                <li><strong>Surupa (Well-shaped):</strong> Proportionate, clean contours that match target anatomical parameters.</li>
+                <li><strong>Sudrudha (Robust & Durable):</strong> Built resilient against torque deformities or fatigue stress cracks.</li>
+                <li><strong>Sugraha (Easy to Hold):</strong> Ergonomic layouts that permit precision operational manual tracking.</li>
             </ol>
         </div>
 
         <div id="yantra-dosha" class="yantra-panel">
             <h3>Yantra Dosha (Mechanical Structural Flaws)</h3>
-            <p>Manufacturing errors or structural breakdowns that can compromise surgical outcome safety vectors:</p>
+            <p>Manufacturing anomalies or structural tracking vulnerabilities that compromise surgical precision safety margins:</p>
             
-            <div style="margin-bottom: 15px; display: flex; gap: 10px;">
-                <button class="option-btn" style="padding: 6px 12px; font-size:0.85rem;" onclick="toggleDoshaSubView('dosha-sushrut')">According to Sushrut</button>
-                <button class="option-btn" style="padding: 6px 12px; font-size:0.85rem; background-color:#555;" onclick="toggleDoshaSubView('dosha-vagbhatt')">According to Ashtang Sangraha</button>
+            <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button class="option-btn" style="padding: 6px 14px; font-size:0.85rem;" onclick="toggleDoshaSubView('dosha-sushrut')">According to Acharya Sushrut</button>
+                <button class="option-btn" style="padding: 6px 14px; font-size:0.85rem; background-color:#555;" onclick="toggleDoshaSubView('dosha-ashtang')">According to Ashtang Sangraha</button>
             </div>
 
             <div id="dosha-sushrut">
                 <h4>Defect Breakdown: Acharya Sushrut (12 Canonical Flaws)</h4>
-                <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 10px; list-style: none; padding-left: 0;">
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>1) Atisthula:</strong> Too thick/bulky, causing excessive tissue compression or macro trauma.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>2) Asara:</strong> Lacks structural core strength; weak, soft, or pliable under pressure.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>3) Ati-dirgha:</strong> Over-extended tool length, severely reducing fine touch sensitivity.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>4) Ati-hrasva:</strong> Too short to reach deeper surgical planes safely.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>5) Agrahi:</strong> Fails to grab or maintain a secure kinetic lock on target foreign bodies.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>6) Vishama-grahi:</strong> Uneven, skewed grip mechanics that exert asymmetrical forces.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>7) Vakra:</strong> Asymmetrical curvature or bent structural lines.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>8) Shithila:</strong> Loose pivot joints or weak interlocking pins, causing mechanism drift.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>9) Atyunnata:</strong> Features an unnecessary elevation or bulge that blocks the field of view.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>10) Mrdukila:</strong> The core locking pin/rivet is constructed out of too soft alloy compounds.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>11) Mrdu-mukha:</strong> The active functional tip is soft, leading to bending under resistance.</li>
-                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>12) Mrdu-pasa:</strong> Weak structural catch rings, handles, loops, or thread elements.</li>
+                <ul class="grid-list-2-col">
+                    <li><strong>1) Atisthula:</strong> Instrument is too thick, causing excessive tissue trauma.</li>
+                    <li><strong>2) Asara:</strong> Lacks structural strength (weak, soft, or pliable).</li>
+                    <li><strong>3) Ati-dirgha:</strong> The instrument is too long, reducing manual control.</li>
+                    <li><strong>4) Ati-hrasva:</strong> The instrument is too short to be effective.</li>
+                    <li><strong>5) Agrahi:</strong> The instrument fails to hold the foreign object firmly.</li>
+                    <li><strong>6) Vishama-grahi:</strong> It holds the object in an improper, skewed, or unsafe manner.</li>
+                    <li><strong>7) Vakra:</strong> The instrument is crooked or asymmetrical.</li>
+                    <li><strong>8) Shithila:</strong> Loose in its joints or connections.</li>
+                    <li><strong>9) Atyunnata:</strong> Features an unnecessary elevation or bulge that disrupts the procedure.</li>
+                    <li><strong>10) Mrdukila:</strong> The primary pin/nail holding the instrument together is too soft or loose.</li>
+                    <li><strong>11) Mrdu-mukha:</strong> The working end (face/tips) of the instrument is too soft.</li>
+                    <li><strong>12) Mrdu-pasa:</strong> Loose or weak threads, loops, or ties (ligatures).</li>
                 </ul>
             </div>
 
-            <div id="dosha-vagbhatt" style="display:none; color:#666; font-style:italic; padding-top:10px;">
-                Ashtang Sangraha structural variant configurations match canonical specifications with specific variations in ergonomic handling profiles.
+            <div id="dosha-ashtang" style="display: none;">
+                <h4>Defect Breakdown: According to Ashtang Sangraha (8 Foundational Flaws)</h4>
+                <ul class="grid-list-2-col">
+                    <li><strong>1) Ati Dirgha:</strong> Too long, which hampers maneuverability and tactile feedback.</li>
+                    <li><strong>2) Ati Hrisva:</strong> Too short, which fails to reach standard deep tissue operational planes.</li>
+                    <li><strong>3) Sthula:</strong> Too thick, escalating macro-mechanical tissue trauma vectors.</li>
+                    <li><strong>4) Tanu:</strong> Thin, structural architecture tends to flex or break under mechanical loads.</li>
+                    <li><strong>5) Vakra:</strong> Crooked, bent, or asymmetrical alignment line distribution.</li>
+                    <li><strong>6) Vishamagrahi:</strong> Improper grip execution profiles across variable surfaces.</li>
+                    <li><strong>7) Agrahi:</strong> Not holding the object well, causing procedural tool slips.</li>
+                    <li><strong>8) Shithila:</strong> Loose or weak structural integrity at rotational pivot rivets.</li>
+                </ul>
             </div>
+        </div>
+
+        <div id="yantra-prashastra" class="yantra-panel">
+            <h3>Prashastra Yantra (The Standard Ideal Model)</h3>
+            <div style="background: #eef8ff; border-left: 4px solid #000080; padding: 20px; border-radius: 4px; line-height: 1.6;">
+                <p style="margin-top: 0; font-size: 1.1rem;">
+                    A tool designed completely <strong>without any mentioned structural Doshas (flaws)</strong>, measuring precisely <strong>18 Angula</strong> in dimensions, and forged with all essential <strong>Yantra Gunas (qualities)</strong> is classified as a <strong>Prashastra Yantra</strong>.
+                </p>
+                <hr style="border:0; border-top: 1px dashed #ccc; margin: 15px 0;">
+                <p style="margin-bottom: 0; font-weight: bold; color: #800020; font-size: 1.15rem;">
+                    🎯 Canonical Benchmark Example: Kankamukh Yantra is celebrated as the absolute Prashastra Yantra.
+                </p>
+            </div>
+        </div>
+
+        <div id="yantra-karma" class="yantra-panel">
+            <h3>Yantra Samanya Karma (General Surgical Actions)</h3>
+            <p>The 24 classical physical manipulation methods implemented utilizing blunt instrumentation elements:</p>
+            <div class="shloka-box" style="font-size: 1.05rem;">
+                यन्त्रकर्माणि तु- निर्घातनपूरणबन्धनव्यूहनवर्तनचालनविवर्तनविवरणपीडनमार्गविशोधनविकर्षणाहरणाञ्छनोन्नमन-विनमनभञ्जनोन्मथनाचूषणैषणदारणर्जूकरणप्रक्षालनप्रधमनप्रमार्जनानि चतुर्विंशतिः ||१७||
+            </div>
+            
+            <ul class="grid-list-2-col karma-list">
+                <li><strong>1) Nirghanta:</strong> Hammering, shaking, or dislodging.</li>
+                <li><strong>2) Aharana:</strong> Extracting or pulling out the foreign body.</li>
+                <li><strong>3) Vikarshan:</strong> Splitting and pulling out.</li>
+                <li><strong>4) Anchana:</strong> Elevating or pulling upwards.</li>
+                <li><strong>5) Unnamana:</strong> Lifting up.</li>
+                <li><strong>6) Vinamana:</strong> Pressing or pushing downwards.</li>
+                <li><strong>7) Chalan:</strong> Moving or shaking.</li>
+                <li><strong>8) Vivartana:</strong> Rotation.</li>
+                <li><strong>9) Vyuhana:</strong> Collecting or grouping together.</li>
+                <li><strong>10) Vartan:</strong> Turning.</li>
+                <li><strong>11) Rijukaran:</strong> Straightening.</li>
+                <li><strong>12) Vivaran:</strong> Exposure, opening, or dilating.</li>
+                <li><strong>13) Pidana:</strong> Squeezing.</li>
+                <li><strong>14) Marga Vishodhan:</strong> Cleaning the channel or tract.</li>
+                <li><strong>15) Achushana:</strong> Sucking or aspirating.</li>
+                <li><strong>16) Eshana:</strong> Probing to locate.</li>
+                <li><strong>17) Prakshalana:</strong> Washing.</li>
+                <li><strong>18) Pradhaman:</strong> Blowing air.</li>
+                <li><strong>19) Pramarjana:</strong> Mopping or wiping.</li>
+                <li><strong>20) Bandhana:</strong> Tying, binding, or fixing.</li>
+                <li><strong>21) Bhanjana:</strong> Breaking or crushing.</li>
+                <li><strong>22) Unmathana:</strong> Churning.</li>
+                <li><strong>23) Darana:</strong> Cracking or tearing.</li>
+                <li><strong>24) Purana:</strong> To fill or pack.</li>
+            </ul>
         </div>
     </div>
 
@@ -606,7 +684,7 @@
     <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
 
     <script>
-        /* MAIN APPLICATION MENU ROUTER */
+        /* MAIN NAVIGATION ROUTER LOGIC LAYER */
         function openTab(tabId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
@@ -630,7 +708,7 @@
             document.getElementById(subWindowId).classList.add('active');
         }
 
-        /* YANTRA SUB-TAB HORIZONTAL ENGINE NAVIGATION SCREEN CONTROL */
+        /* YANTRA DYNAMIC PANEL HORIZONTAL ROUTER ENGINE */
         function openYantraPanel(evt, panelId) {
             const panels = document.querySelectorAll('.yantra-panel');
             panels.forEach(p => p.classList.remove('active'));
@@ -642,13 +720,14 @@
             evt.currentTarget.classList.add('active');
         }
 
+        /* NESTED FLUSH SUB-VIEW TOGGLE ROUTE FOR DOSHAS */
         function toggleDoshaSubView(targetViewId) {
             if(targetViewId === 'dosha-sushrut') {
                 document.getElementById('dosha-sushrut').style.display = 'block';
-                document.getElementById('dosha-vagbhatt').style.display = 'none';
+                document.getElementById('dosha-ashtang').style.display = 'none';
             } else {
                 document.getElementById('dosha-sushrut').style.display = 'none';
-                document.getElementById('dosha-vagbhatt').style.display = 'block';
+                document.getElementById('dosha-ashtang').style.display = 'block';
             }
         }
 
@@ -667,7 +746,7 @@
             }
         }
 
-        /* GAMES DATA ENGINE LOOPS COMPONENTS */
+        /* MASTER RESTORED GAMES SYSTEM MODULE MATRIX DATASET */
         const datasets = {
             clw: {
                 title: "Setup Task: Suturing of CLW",
@@ -786,7 +865,7 @@
             const elements = document.querySelectorAll('.drag-item');
             elements.forEach(el => el.setAttribute('draggable', 'false'));
             setTimeout(() => {
-                alert(`Game Complete!\nYour dashboard structural scoring: ${runningScore} points.`);
+                alert(`Game Complete!\nYour final trolley configuration score for this procedure is: ${runningScore} points.`);
                 resetGameEngine();
             }, 100);
         }
