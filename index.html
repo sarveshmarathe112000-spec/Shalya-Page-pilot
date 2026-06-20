@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayur-Shalya-Guide</title>
     <style>
-        /* Base Setup & Premium Serif Styling */
+        /* Base Setup & Premium Serif Typography */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -42,14 +42,14 @@
             margin: 0;
         }
 
-        /* Top Tab Navigation */
+        /* Top Tier Main Navigation */
         .tabs-container {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin: 30px 0;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 0 20px;
         }
 
@@ -72,11 +72,11 @@
             color: #fff;
         }
 
-        /* Main Display Windows */
+        /* Display Content Windows */
         .window {
             display: none;
             width: 90%;
-            max-width: 800px;
+            max-width: 950px;
             background: #fff;
             padding: 30px;
             border-radius: 8px;
@@ -134,7 +134,94 @@
             display: inline-block;
         }
 
-        /* Instruments Tab Grid Layout */
+        /* HORIZONTAL YANTRA SUB-TABS MATRIX STYLE */
+        .yantra-subtabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .yantra-sub-btn {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .yantra-sub-btn:hover, .yantra-sub-btn.active {
+            background-color: #000080;
+            color: #fff;
+            border-color: #000080;
+        }
+
+        .yantra-panel {
+            display: none;
+            background: #fafafa;
+            border: 1px solid #eef;
+            padding: 25px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .yantra-panel.active {
+            display: block;
+        }
+
+        /* Sanskrit Shloka Verse Styling Box */
+        .shloka-box {
+            background-color: #f5ece9;
+            border-left: 4px solid #800020;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #500014;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Data Presentation Grid & Tables */
+        .acharya-table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .acharya-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: 3px solid #800020;
+            border-radius: 4px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .acharya-card h4 {
+            margin-top: 0;
+            color: #800020;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 8px;
+        }
+
+        ol, ul {
+            padding-left: 20px;
+            line-height: 1.5;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* INSTRUMENT GRID */
         .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,7 +243,7 @@
             object-fit: contain;
         }
 
-        /* INTERACTIVE SURGICAL GAME SYSTEM STYLING */
+        /* INTERACTIVE GAME UI STYLING */
         .game-dashboard {
             display: flex;
             justify-content: space-between;
@@ -172,12 +259,11 @@
         .timer-box { color: #cc0000; }
         .score-box { color: #006600; }
 
-        /* The Metallic Frame Green Surgical Trolley Workspace */
         .trolley-zone {
             width: 100%;
             height: 280px;
-            background-color: #2e6f40; /* Distinctive Surgical Theater Green */
-            border: 6px solid #b0b0b0; /* Stainless steel bumper look */
+            background-color: #2e6f40;
+            border: 6px solid #b0b0b0;
             border-radius: 8px;
             box-shadow: inset 0 0 25px rgba(0,0,0,0.45);
             display: flex;
@@ -187,7 +273,6 @@
             padding: 20px;
             margin: 20px 0;
             position: relative;
-            transition: background-color 0.2s;
         }
 
         .trolley-zone.drag-over {
@@ -206,7 +291,6 @@
             letter-spacing: 2px;
         }
 
-        /* Available Instruments Label Rack Bank */
         .item-bank {
             display: flex;
             flex-wrap: wrap;
@@ -219,7 +303,6 @@
             min-height: 120px;
         }
 
-        /* Interactive Draggable Elements Label Cards */
         .drag-item {
             background-color: #fff;
             color: #333;
@@ -230,19 +313,11 @@
             font-size: 0.95rem;
             user-select: none;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            transition: transform 0.1s;
         }
 
-        .drag-item:active {
-            cursor: grabbing;
-            transform: scale(0.95);
-        }
-
-        /* Dynamic Border State Highlights within Trolley Bounds */
         .trolley-zone .drag-item {
             background-color: rgba(255, 255, 255, 0.95);
             border-color: #2e6f40;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }
 
         .start-btn {
@@ -255,12 +330,9 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .start-btn:hover {
-            background-color: #590016;
-        }
+        .start-btn:hover { background-color: #590016; }
     </style>
 </head>
 <body>
@@ -270,27 +342,189 @@
         <p class="subtitle">An Interactive Surgical Companion</p>
     </header>
 
-    <!-- Top Menu Row Tabs -->
     <div class="tabs-container">
-        <button class="tab-btn" onclick="openTab('instruments')">Instruments</button>
+        <button class="tab-btn active" id="instruments-nav" onclick="openTab('instruments')">Instruments</button>
         <button class="tab-btn" onclick="openTab('procedures')">Procedures</button>
         <button class="tab-btn" id="games-tab-nav" onclick="openTab('games')">Games</button>
         <button class="tab-btn" onclick="openTab('quizzes')">Quizzes</button>
     </div>
 
-    <!-- WINDOW 1: INSTRUMENTS -->
-    <div id="instruments" class="window">
-        <h2>Instruments</h2>
-        <p>Select a category to explore surgical instruments:</p>
+    <div id="instruments" class="window active">
+        <h2>Instruments Knowledge Center</h2>
+        <p>Select an administrative operational class branch to evaluate classical scriptural architecture:</p>
         <div class="option-group">
-            <button class="option-btn" onclick="openSubWindow('yantra-content')">Yantra</button>
-            <button class="option-btn" onclick="openSubWindow('shastra-content')">Shastra</button>
+            <button class="option-btn" onclick="openSubWindow('yantra-content')">Yantra Exploration Base</button>
+            <button class="option-btn" onclick="openSubWindow('shastra-content')">Shastra Exploration Base</button>
+        </div>
+    </div>
+
+    <div id="yantra-content" class="window">
+        <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments Core</button>
+        <h2>Yantra (Surgical Blunt Instruments Compendium)</h2>
+        <p>Toggle across the structural matrices below to evaluate classical surgical definitions, groups, metrics, and parameters:</p>
+
+        <div class="yantra-subtabs-container">
+            <button class="yantra-sub-btn active" onclick="openYantraPanel(event, 'yantra-def')">Yantra Definition</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-types')">Yantra Types (Sankhya)</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-vishay')">Yantra Vishay (Uses)</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-dravya')">Nirman Dravya</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-akriti')">Yantra Akriti (Shape)</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-guna')">Yantra Guna (Qualities)</button>
+            <button class="yantra-sub-btn" onclick="openYantraPanel(event, 'yantra-dosha')">Yantra Dosha (Flaws)</button>
+        </div>
+
+        <div id="yantra-def" class="yantra-panel active">
+            <h3>Yantra Definition</h3>
+            <p>The operational surgical definition of Yantra from the classical texts is declared as follows:</p>
+            <div class="shloka-box">
+                तत्र, मनःशरीराबाधकराणि शल्यानि; तेषामाहरणोपायो यन्त्राणि ||४||
+            </div>
+            <p><strong>Clinical Manifestation:</strong> Any structural apparatus, mechanism, or vector device utilized as a systematic solution framework to extract internal or extraneous pathogenic entities (Shalya) causing persistent distress, morbid friction, or trauma to the psychosome (Manas & Sharira) is called a Yantra.</p>
+        </div>
+
+        <div id="yantra-types" class="yantra-panel">
+            <h3>Yantra Types (Sankhya System)</h3>
+            <p>A multi-disciplinary structural view of instrument classification arrays according to the three foundational pillars of classical Shalya system research:</p>
+            
+            <div class="acharya-table-grid">
+                <div class="acharya-card">
+                    <h4>Acharya Sushruth (101 Total)</h4>
+                    <ol>
+                        <li><strong>Swastik Yantra</strong> (Cruciform Instruments / 24 Types)</li>
+                        <li><strong>Sandansh Yantra</strong> (Pincer-like Instruments / 2 Types)</li>
+                        <li><strong>Tala Yantra</strong> (Spoon-shaped Instruments / 2 Types)</li>
+                        <li><strong>Nadi Yantra</strong> (Tubular Diagnostic/Surgical Instruments / 20 Types)</li>
+                        <li><strong>Shalaka Yantra</strong> (Rod-like Instruments / Probes / 28 Types)</li>
+                        <li><strong>Upayantra</strong> (Accessory/Improvised Instruments / 25 Types)</li>
+                    </ol>
+                </div>
+                <div class="acharya-card">
+                    <h4>Ashtang Sangraha (Vagbhatta)</h4>
+                    <ol>
+                        <li><strong>Swastik Yantra</strong> (Cruciform Architecture)</li>
+                        <li><strong>Sandansh Yantra</strong> (Pincers and Forceps)</li>
+                        <li><strong>Taal Yantra</strong> (Spoon-shaped Speculums)</li>
+                        <li><strong>Naadi Yantra</strong> (Tubular Channels)</li>
+                        <li><strong>Shalaka Yantra</strong> (Probes and Directors)</li>
+                        <li><strong>Anuyantra</strong> (Accessory Apparatus)</li>
+                    </ol>
+                </div>
+                <div class="acharya-card">
+                    <h4>Harit Samhita Array</h4>
+                    <ol>
+                        <li>Godhamukha</li>
+                        <li>Vajramukha</li>
+                        <li>Sandansh</li>
+                        <li>Chakrakruti</li>
+                        <li>Kankapaad</li>
+                        <li>Aanaka</li>
+                        <li>Shrungak</li>
+                        <li>Kundal</li>
+                        <li>Shrivatsa</li>
+                        <li>Sauvatsik</li>
+                        <li>Panchavaktra</li>
+                        <li>Grudhrapaad</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div id="yantra-vishay" class="yantra-panel">
+            <h3>Yantra Vishay (Clinical Indications for Use)</h3>
+            <p>Yantra devices are structurally allocated to perform operations inside the following pathological fields:</p>
+            <ul>
+                <li><strong>Avagadha Vrana:</strong> Deep, multi-layered complex wounds requiring manual structural tracking or tissue retraction.</li>
+                <li><strong>Anumukha Vrana:</strong> Microscopic or narrow sinus tracks and wound openings that demand highly technical access vectors.</li>
+                <li><strong>Shalyayukta Vrana:</strong> Complex wound scenarios with embedded foreign bodies requiring safe mechanics for extraction.</li>
+            </ul>
+        </div>
+
+        <div id="yantra-dravya" class="yantra-panel">
+            <h3>Yantra Nirman Dravya (Materials of Construction)</h3>
+            <p>Surgical instruments are forged or extracted out of premium biocompatible raw components:</p>
+            <div class="acharya-table-grid" style="grid-template-columns: 1fr 1fr;">
+                <div>
+                    <h4>Metallic Compounds</h4>
+                    <ul>
+                        <li><strong>Loha:</strong> Iron / Surgical Steels (Primary choice for structural cutting edge/rigidity)</li>
+                        <li><strong>Suvarna:</strong> Gold (Highly resistant to corrosion, non-reactive)</li>
+                        <li><strong>Rajat:</strong> Silver (Natural anti-microbial agent properties)</li>
+                        <li><strong>Tamra:</strong> Copper (Alloying and specific thermal properties)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Natural Organic Elements</h4>
+                    <ul>
+                        <li><strong>Shrunga:</strong> Animal Horn (Flexible, lightweight retraction tools)</li>
+                        <li><strong>Gajadanta:</strong> Elephant Ivory/Tusk (Extremely dense, durable, smooth texture crafting material)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="yantra-akriti" class="yantra-panel">
+            <h3>Yantra Akriti (Biomimetic Morphology & Shapes)</h3>
+            <p>The morphology and operational heads of surgical instruments are heavily inspired by nature:</p>
+            <blockquote style="border-left: 4px solid #000080; padding-left: 15px; margin: 0; font-style: italic; background: #fff; padding: 15px;">
+                "Yantra operational heads are structurally designed to replicate the mouth shapes of aggressive animals, predatory birds, and wild deer."
+            </blockquote>
+            <p style="margin-top: 15px;">This ensures that the gripping mechanism, pressure vectors, and surface area ratios match the precise kinetic hold required for surgical extractions.</p>
+        </div>
+
+        <div id="yantra-guna" class="yantra-panel">
+            <h3>Yantra Guna (Structural Virtues of an Ideal Instrument)</h3>
+            <p>The golden canonical scriptural metric defining standard mechanical compliance tolerances:</p>
+            <div class="shloka-box">
+                समाहितानि यन्त्राणि खरश्लक्ष्णमुखानि च |<br>
+                सुदृढानि सुरूपाणि सुग्रहाणि च कारयेत् ||९||
+            </div>
+            <p>Every ideal tool must fulfill these six strict mechanical attributes:</p>
+            <ol>
+                <li><strong>Samahitani:</strong> Perfectly centered alignment and equal balancing of the functional halves.</li>
+                <li><strong>Khara-mukha:</strong> Corrugated, serrated, or furrowed jaws to securely grip target tissue without slipping.</li>
+                <li><strong>Shlakshna-mukha:</strong> Micro-polished, smooth surface elements where contact points must minimize friction.</li>
+                <li><strong>Surupa:</strong> Proportionate, well-shaped ergonomics that fit human anatomy accurately.</li>
+                <li><strong>Sudrudha:</strong> Built highly robust, thick-walled, and structurally resilient against material fatigue.</li>
+                <li><strong>Sugraha:</strong> Ergonomic configurations that allow an operator to hold and maneuver the tool with high manual control.</li>
+            </ol>
+        </div>
+
+        <div id="yantra-dosha" class="yantra-panel">
+            <h3>Yantra Dosha (Mechanical Structural Flaws)</h3>
+            <p>Manufacturing errors or structural breakdowns that can compromise surgical outcome safety vectors:</p>
+            
+            <div style="margin-bottom: 15px; display: flex; gap: 10px;">
+                <button class="option-btn" style="padding: 6px 12px; font-size:0.85rem;" onclick="toggleDoshaSubView('dosha-sushrut')">According to Sushrut</button>
+                <button class="option-btn" style="padding: 6px 12px; font-size:0.85rem; background-color:#555;" onclick="toggleDoshaSubView('dosha-vagbhatt')">According to Ashtang Sangraha</button>
+            </div>
+
+            <div id="dosha-sushrut">
+                <h4>Defect Breakdown: Acharya Sushrut (12 Canonical Flaws)</h4>
+                <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 10px; list-style: none; padding-left: 0;">
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>1) Atisthula:</strong> Too thick/bulky, causing excessive tissue compression or macro trauma.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>2) Asara:</strong> Lacks structural core strength; weak, soft, or pliable under pressure.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>3) Ati-dirgha:</strong> Over-extended tool length, severely reducing fine touch sensitivity.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>4) Ati-hrasva:</strong> Too short to reach deeper surgical planes safely.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>5) Agrahi:</strong> Fails to grab or maintain a secure kinetic lock on target foreign bodies.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>6) Vishama-grahi:</strong> Uneven, skewed grip mechanics that exert asymmetrical forces.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>7) Vakra:</strong> Asymmetrical curvature or bent structural lines.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>8) Shithila:</strong> Loose pivot joints or weak interlocking pins, causing mechanism drift.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>9) Atyunnata:</strong> Features an unnecessary elevation or bulge that blocks the field of view.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>10) Mrdukila:</strong> The core locking pin/rivet is constructed out of too soft alloy compounds.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>11) Mrdu-mukha:</strong> The active functional tip is soft, leading to bending under resistance.</li>
+                    <li style="background:#fff; padding:10px; border:1px solid #eee; border-left:3px solid #cc0000;"><strong>12) Mrdu-pasa:</strong> Weak structural catch rings, handles, loops, or thread elements.</li>
+                </ul>
+            </div>
+
+            <div id="dosha-vagbhatt" style="display:none; color:#666; font-style:italic; padding-top:10px;">
+                Ashtang Sangraha structural variant configurations match canonical specifications with specific variations in ergonomic handling profiles.
+            </div>
         </div>
     </div>
 
     <div id="shastra-content" class="window">
-        <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments</button>
-        <h2>Shastra</h2>
+        <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments Core</button>
+        <h2>Shastra (Surgical Sharp Cutting Instruments)</h2>
         <p>Choose how you want to view the Shastra instruments:</p>
         <div class="option-group">
             <button class="option-btn">Shastra Overall</button>
@@ -336,10 +570,8 @@
         </div>
     </div>
 
-    <!-- WINDOW 2: PROCEDURES -->
     <div id="procedures" class="window"><h2>Procedures</h2><p>Content coming soon...</p></div>
 
-    <!-- WINDOW 3: GAMES (DYNAMIC MULTI-GAME SELECTION WORKSPACE) -->
     <div id="games" class="window">
         <h2>Surgical Setup Arena</h2>
         <p>Test your speed and precision in managing clinical tool allocations.</p>
@@ -351,7 +583,6 @@
             <option value="appendectomy">Appendectomy Surgery Setup</option>
         </select>
 
-        <!-- Dynamic Game Workspace Container -->
         <div id="game-workspace" style="display: none; margin-top: 25px;">
             <h3 id="current-game-title" style="color: #800020; margin-bottom: 5px;">Procedure Game</h3>
             <div class="game-dashboard">
@@ -363,25 +594,19 @@
                 <button class="start-btn" onclick="startGame()">Start Game</button>
             </div>
 
-            <!-- Green Surgical Instrument Trolley Box Graphic Asset -->
             <div class="trolley-zone" id="trolley" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">
                 <div class="trolley-label">Surgical Trolley</div>
             </div>
 
-            <!-- Interactive Elements Storage Bank Shelf -->
             <h3>Available Elements Bank</h3>
-            <p style="font-size: 0.9rem; margin: 0 0 10px 0; color: #666;">Drag correct items onto the green trolley before time runs out:</p>
-            <div class="item-bank" id="bank">
-                <!-- Populated dynamically via current module payload matrix -->
-            </div>
+            <div class="item-bank" id="bank"></div>
         </div>
     </div>
 
-    <!-- WINDOW 4: QUIZZES -->
     <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
 
     <script>
-        /* CORE APPLICATION NAVIGATION ENGINE LAYERS */
+        /* MAIN APPLICATION MENU ROUTER */
         function openTab(tabId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
@@ -392,10 +617,10 @@
             const targetWindow = document.getElementById(tabId);
             if(targetWindow) targetWindow.classList.add('active');
             
-            if(event && event.currentTarget && event.currentTarget.classList) {
+            if(event && event.currentTarget && event.currentTarget.classList && event.currentTarget.id !== 'instruments') {
                 event.currentTarget.classList.add('active');
             } else {
-                document.getElementById('games-tab-nav').classList.add('active');
+                document.getElementById('instruments-nav').classList.add('active');
             }
         }
 
@@ -403,6 +628,28 @@
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
             document.getElementById(subWindowId).classList.add('active');
+        }
+
+        /* YANTRA SUB-TAB HORIZONTAL ENGINE NAVIGATION SCREEN CONTROL */
+        function openYantraPanel(evt, panelId) {
+            const panels = document.querySelectorAll('.yantra-panel');
+            panels.forEach(p => p.classList.remove('active'));
+
+            const subBtns = document.querySelectorAll('.yantra-sub-btn');
+            subBtns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(panelId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        function toggleDoshaSubView(targetViewId) {
+            if(targetViewId === 'dosha-sushrut') {
+                document.getElementById('dosha-sushrut').style.display = 'block';
+                document.getElementById('dosha-vagbhatt').style.display = 'none';
+            } else {
+                document.getElementById('dosha-sushrut').style.display = 'none';
+                document.getElementById('dosha-vagbhatt').style.display = 'block';
+            }
         }
 
         function handleProcedureChange(value) {
@@ -420,7 +667,7 @@
             }
         }
 
-        /* INTEGRATED MASTER GAMES DICTIONARY MAP */
+        /* GAMES DATA ENGINE LOOPS COMPONENTS */
         const datasets = {
             clw: {
                 title: "Setup Task: Suturing of CLW",
@@ -503,7 +750,6 @@
             const bank = document.getElementById('bank');
             bank.innerHTML = '';
             
-            // Generate a random dynamic shuffle distribution out of our arrays
             let activeItems = [...datasets[activeMode].items];
             let shuffledItems = activeItems.sort(() => Math.random() - 0.5);
             
@@ -514,7 +760,6 @@
                 element.innerText = item.name;
                 element.setAttribute('draggable', 'false');
                 element.dataset.correct = item.isCorrect;
-                
                 element.ondragstart = dragStart;
                 bank.appendChild(element);
             });
@@ -522,7 +767,6 @@
 
         function startGame() {
             if(gameActive) return;
-            
             gameActive = true;
             document.getElementById('start-control-box').style.display = 'none';
             
@@ -532,32 +776,23 @@
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer-val').innerText = timeLeft;
-                
-                if(timeLeft <= 0) {
-                    endGame();
-                }
+                if(timeLeft <= 0) endGame();
             }, 1000);
         }
 
         function endGame() {
             clearInterval(timerInterval);
             gameActive = false;
-            
             const elements = document.querySelectorAll('.drag-item');
             elements.forEach(el => el.setAttribute('draggable', 'false'));
-
             setTimeout(() => {
-                alert(`Time is up!\nYour final trolley configuration score for this procedure is: ${runningScore} points.`);
+                alert(`Game Complete!\nYour dashboard structural scoring: ${runningScore} points.`);
                 resetGameEngine();
             }, 100);
         }
 
-        /* HTML5 Native Drag & Drop API Handlers */
         function dragStart(event) {
-            if(!gameActive) {
-                event.preventDefault();
-                return;
-            }
+            if(!gameActive) { event.preventDefault(); return; }
             event.dataTransfer.setData("text/plain", event.target.id);
         }
 
@@ -567,15 +802,12 @@
             document.getElementById('trolley').classList.add('drag-over');
         }
 
-        function dragLeave(event) {
-            document.getElementById('trolley').classList.remove('drag-over');
-        }
+        function dragLeave(event) { document.getElementById('trolley').classList.remove('drag-over'); }
 
         function dropItem(event) {
             event.preventDefault();
             const trolley = document.getElementById('trolley');
             trolley.classList.remove('drag-over');
-
             if(!gameActive) return;
 
             const id = event.dataTransfer.getData("text/plain");
@@ -583,13 +815,12 @@
             
             if(element && !trolley.contains(element)) {
                 trolley.appendChild(element);
-                
                 if(element.dataset.correct === "true") {
                     runningScore += 1;
-                    element.style.borderColor = "#00cc00"; /* Highlight Green */
+                    element.style.borderColor = "#00cc00";
                 } else {
-                    runningScore -= 1; 
-                    element.style.borderColor = "#ff0000"; /* Highlight Red */
+                    runningScore -= 1;
+                    element.style.borderColor = "#ff0000";
                 }
                 document.getElementById('score-val').innerText = runningScore;
             }
