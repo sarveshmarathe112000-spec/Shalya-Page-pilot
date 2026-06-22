@@ -119,7 +119,8 @@
             border: 2px solid #ccc;
             border-radius: 4px;
             width: 100%;
-            max-width: 300px;
+            max-width: 350px;
+            background-color: #fdfdfd;
         }
 
         .back-btn {
@@ -180,7 +181,7 @@
             width: 100%;
             overflow-x: auto;
             margin-top: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8 rgba(0,0,0,0.04);
             border-radius: 4px;
         }
 
@@ -271,6 +272,16 @@
 
         ol, ul { padding-left: 20px; line-height: 1.5; }
         li { margin-bottom: 6px; }
+
+        /* Dropdown Interactive View Container */
+        .dropdown-result-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-left: 4px solid #000080;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
 
         /* INSTRUMENT GRID CARD PATHS */
         .instrument-grid {
@@ -547,7 +558,7 @@
             <button class="matrix-sub-btn" onclick="openMatrixPanel(event, 'shastra', 'shastra-summary')">Shastra Summary Table</button>
             <button class="matrix-sub-btn" onclick="openMatrixPanel(event, 'shastra', 'shastra-guna')">Shastra Guna</button>
             <button class="matrix-sub-btn" onclick="openMatrixPanel(event, 'shastra', 'shastra-dosha')">Shastra Dosha</button>
-            <button class="matrix-sub-btn" onclick="openMatrixPanel(event, 'shastra', 'shastra-kosha')">Shastra Kosha</button>
+            <button class="matrix-sub-btn" onclick="openMatrixPanel(event, 'shastra', 'yantra-kosh')">Yantra Kosh</button>
         </div>
 
         <div id="shastra-types" class="matrix-panel shastra-panel active">
@@ -555,16 +566,14 @@
             <p>Select a scriptural codex tradition profile to view numerical allocations:</p>
             
             <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
-                <button class="option-btn" style="background-color:#800020; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-sushrut')">According to Sushrut Samhita (20)</button>
-                <button class="option-btn" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-vagbhat')">According to Vagbhat (26)</button>
-                <button class="option-btn" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-palkapya')">Palkapya Samhita (10)</button>
-                <button class="option-btn" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-harit')">According to Harit Samhita (12)</button>
+                <button class="option-btn" id="btn-sushrut" style="background-color:#800020; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-sushrut')">According to Sushrut Samhita (20)</button>
+                <button class="option-btn" id="btn-vagbhat" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-vagbhat')">According to Vagbhat (26)</button>
+                <button class="option-btn" id="btn-palkapya" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-palkapya')">Palkapya Samhita (10)</button>
+                <button class="option-btn" id="btn-harit" style="background-color:#555; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-harit')">According to Harit Samhita (12)</button>
             </div>
 
             <div id="shastra-acharya-sushrut" class="shastra-acharya-view">
                 <h4>Sushrut Samhita Cannon Array Allocation Dataset</h4>
-                <p>The 20 classical precise sharp cutting tools arranged dynamically in canonical data frames:</p>
-                
                 <div class="table-responsive-wrapper">
                     <table class="classical-data-table">
                         <thead>
@@ -602,25 +611,101 @@
                 </div>
             </div>
 
-            <div id="shastra-acharya-vagbhat" class="shastra-acharya-view" style="display:none; color:#666; font-style:italic;">
-                Ashtang Hridaya/Sangraha details containing 26 architectural models are actively indexed here for clinical expansion.
+            <div id="shastra-acharya-vagbhat" class="shastra-acharya-view" style="display:none;">
+                <h4>Ashtang Hridaya / Sangraha - Array Allocation Dataset (26 Tools)</h4>
+                <div class="table-responsive-wrapper">
+                    <table class="classical-data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Sr. No.</th>
+                                <th>Śastra Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Mandalagra</td></tr><tr><td>2</td><td>Karapatra</td></tr><tr><td>3</td><td>Vriddhipatra</td></tr><tr><td>4</td><td>Nakhashastra</td></tr><tr><td>5</td><td>Mudrika</td></tr><tr><td>6</td><td>Utpalapatra</td></tr><tr><td>7</td><td>Ardhadhara</td></tr><tr><td>8</td><td>Suchi</td></tr><tr><td>9</td><td>Kushapatra</td></tr><tr><td>10</td><td>Atimukha</td></tr><tr><td>11</td><td>Shararimukha</td></tr><tr><td>12</td><td>Antarmukha</td></tr><tr><td>13</td><td>Trikurchaka</td></tr><tr><td>14</td><td>Kutharika</td></tr><tr><td>15</td><td>Vrihimukha</td></tr><tr><td>16</td><td>Ara</td></tr><tr><td>17</td><td>Vetasapatra</td></tr><tr><td>18</td><td>Badisha</td></tr><tr><td>19</td><td>Dantashanku</td></tr><tr><td>20</td><td>Eshani</td></tr><tr><td>21</td><td>Khaja</td></tr><tr><td>22</td><td>Karna-Vedhani</td></tr><tr><td>23</td><td>Aara (Large perforator type)</td></tr><tr><td>24</td><td>Kuthari</td></tr><tr><td>25</td><td>Shalaka</td></tr><tr><td>26</td><td>Anguli-Shastra</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div id="shastra-acharya-palkapya" class="shastra-acharya-view" style="display:none; color:#666; font-style:italic;">
-                Gaja Ayurveda elephant operational records classifying 10 tools are cataloged under this interface branch.
+
+            <div id="shastra-acharya-palkapya" class="shastra-acharya-view" style="display:none;">
+                <h4>Palkapya Samhita - Elephant Surgery Codex (10 Tools)</h4>
+                <div class="table-responsive-wrapper">
+                    <table class="classical-data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Sr. No.</th>
+                                <th>Śastra Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Mandalagra</td></tr><tr><td>2</td><td>Kushapatra</td></tr><tr><td>3</td><td>Vrihimukha</td></tr><tr><td>4</td><td>Kutharakruti</td></tr><tr><td>5</td><td>Rampak</td></tr><tr><td>6</td><td>Utpalapatra</td></tr><tr><td>7</td><td>Vatsadanta</td></tr><tr><td>8</td><td>Suchi</td></tr><tr><td>9</td><td>Vrudhipatra</td></tr><tr><td>10</td><td>Shalaka</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div id="shastra-acharya-harit" class="shastra-acharya-view" style="display:none; color:#666; font-style:italic;">
-                Harit Samhita structural allocation matrix listing 12 cutting segments is under verification loop.
+
+            <div id="shastra-acharya-harit" class="shastra-acharya-view" style="display:none;">
+                <h4>Harit Samhita - Canonical Structural Allocation Matrix (10 Tools)</h4>
+                <div class="table-responsive-wrapper">
+                    <table class="classical-data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Sr. No.</th>
+                                <th>Śastra Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Ardhachandra</td></tr><tr><td>2</td><td>Vrihimukha</td></tr><tr><td>3</td><td>Kankapatra</td></tr><tr><td>4</td><td>Kutharika</td></tr><tr><td>5</td><td>Karveerpatra</td></tr><tr><td>6</td><td>Shalaka</td></tr><tr><td>7</td><td>Karapatrak</td></tr><tr><td>8</td><td>Badish</td></tr><tr><td>9</td><td>Ashma</td></tr><tr><td>10</td><td>Shuli</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <div id="shastra-vishay" class="matrix-panel shastra-panel"><h3>Shastra Vishay (Uses)</h3><p>Operational field scopes for razor-edge implements are incoming.</p></div>
+        <div id="shastra-vishay" class="matrix-panel shastra-panel">
+            <h3>Shastra Vishay (Uses & Practical Field Scopes)</h3>
+            <p>Functional correlations of operational surgical tools alongside English nomenclature mapping:</p>
+            <div class="table-responsive-wrapper">
+                <table class="classical-data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Sr. No.</th>
+                            <th style="width: 45%;">Shastra (English Names)</th>
+                            <th style="width: 45%;">Surgical Action (English)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Circular-tipped Knife (Mandalagra), Saw-like Knife (Karapatra)</td><td>Excision (Chedana), Scarification/Scraping (Lekhana)</td></tr>
+                        <tr><td>2</td><td>Long Leaf-shaped Scalpel (Vriddhipatra), Nail Knife (Nakhashastra), Ring Knife (Mudrika), Lotus-petal Knife (Utpalapatra), Single-edged Knife (Ardhadhara)</td><td>Excision (Chedana), Incision/Puncturing (Bhedana)</td></tr>
+                        <tr><td>3</td><td>Needle (Suchi), Grass-blade Knife (Kushapatra), Curved-pointed Knife (Atimukha), Curved Bistoury (Antarmukha), Brush-like Scarifier (Trikurchaka)</td><td>Drainage/Evacuation (Visravana)</td></tr>
+                        <tr><td>4</td><td>Chisel-shaped Knife (Kutharika), Trocar (Vrihimukha), Awl (Ara), Scalpel (Vetasapatra), Needle (Suchi)</td><td>Puncturing/Piercing (Vyadhana)</td></tr>
+                        <tr><td>5</td><td>Sharp Hook (Badisha), Tooth Scaler/Extractor (Dantashanku)</td><td>Extraction/Removal (Aharana)</td></tr>
+                        <tr><td>6</td><td>Probe (Eshani)</td><td>Probing/Exploration (Eshana), Drainage (Visravana)</td></tr>
+                        <tr><td>7</td><td>Needle (Suchi)</td><td>Suturing (Sivana)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         
-        <div id="shastra-karma" class="matrix-panel shastra-panel"><h3>Shastra Karma</h3><p>The explicit cutting and dividing execution paradigms under study.</p></div>
+        <div id="shastra-karma" class="matrix-panel shastra-panel">
+            <h3>Shastra Karma (Surgical Actions Toggles)</h3>
+            <p>Select a specific Classical Samhita scriptural lens to inspect action definitions:</p>
+            
+            <select id="samhita-karma-selector" onchange="displaySamhitaKarma(this.value)">
+                <option value="">-- Choose a Samhita --</option>
+                <option value="sushrut-sam">According to Sushrut Samhita</option>
+                <option value="charak-sam">According to Charak Samhita</option>
+                <option value="ashtang-sam">According to Ashtang Sangraha</option>
+            </select>
+
+            <div id="karma-dropdown-output" class="dropdown-result-box" style="display:none; margin-top:20px;">
+                </div>
+        </div>
         
         <div id="shastra-summary" class="matrix-panel shastra-panel">
             <h3>Shastra Summary Table</h3>
             <p>Comprehensive comparative overview across standard structural specifications and operational outputs:</p>
-            
             <div class="table-responsive-wrapper">
                 <table class="classical-data-table">
                     <thead>
@@ -658,9 +743,46 @@
             </div>
         </div>
         
-        <div id="shastra-guna" class="matrix-panel shastra-panel"><h3>Shastra Guna</h3><p>Sharpness, structural tempering values, and handle specifications.</p></div>
-        <div id="shastra-dosha" class="matrix-panel shastra-panel"><h3>Shastra Dosha</h3><p>Blunt edge profiles, material faults, and misalignment criteria maps.</p></div>
-        <div id="shastra-kosha" class="matrix-panel shastra-panel"><h3>Shastra Kosha</h3><p>Storage boxes, protective sheets, and transport packaging parameters.</p></div>
+        <div id="shastra-guna" class="matrix-panel shastra-panel">
+            <h3>Shastra Guna (Qualitative Excellences)</h3>
+            <p>Select an architectural virtue parameter to evaluate surgical metrics:</p>
+            <select id="guna-selector" onchange="displayGunaInfo(this.value)">
+                <option value="">-- Choose a Guna --</option>
+                <option value="1">1) Sugrahani</option>
+                <option value="2">2) Sulohani</option>
+                <option value="3">3) Sudharani</option>
+                <option value="4">4) Surupani</option>
+                <option value="5">5) Susamahata Mukhagrani</option>
+                <option value="6">6) Akaralani</option>
+            </select>
+            <div id="guna-output-box" class="dropdown-result-box" style="display:none; margin-top:20px;"></div>
+        </div>
+
+        <div id="shastra-dosha" class="matrix-panel shastra-panel">
+            <h3>Shastra Dosha (Structural Mechanical Imperfections)</h3>
+            <p>Select a classical risk structural flaw configuration to audit safety vectors:</p>
+            <select id="dosha-selector" onchange="displayDoshaInfo(this.value)">
+                <option value="">-- Choose a Dosha --</option>
+                <option value="1">1) Vakra Dhara</option>
+                <option value="2">2) Kuntha Dhara</option>
+                <option value="3">3) Khanda Dhara</option>
+                <option value="4">4) Khara Dhara</option>
+                <option value="5">5) Ati Sthula</option>
+                <option value="6">6) Atyalpam</option>
+                <option value="7">7) Atidirgha</option>
+                <option value="8">8) Atihrsva</option>
+            </select>
+            <div id="dosha-output-box" class="dropdown-result-box" style="display:none; margin-top:20px;"></div>
+        </div>
+
+        <div id="yantra-kosh" class="matrix-panel shastra-panel">
+            <h3>Yantra Kosh (Instrument Preservation Unit)</h3>
+            <div class="shloka-box" style="font-size:1rem; font-weight:normal; text-align:left;">
+                <strong>Definition:</strong> Yantra Kosh is a special container or box used for keeping, carrying, and protecting surgical instruments (Yantras and Shastras).<br><br>
+                According to <strong>Sushruta</strong>, the instrument box should be strong, clean, well-arranged, and capable of protecting instruments from damage, rust, dust, and contamination.<br><br>
+                <strong>Dimensional Layout Framework:</strong> The Shastra Kosh model frame parameters measure exactly <strong>9 Angula wide and 12 Angula long</strong>.
+            </div>
+        </div>
     </div>
 
     <div id="shastra-procedure-content" class="window">
@@ -736,8 +858,8 @@
             const targetWindow = document.getElementById(tabId);
             if(targetWindow) targetWindow.classList.add('active');
             
-            if(event && event.currentTarget && event.currentTarget.classList && event.currentTarget.id !== 'instruments') {
-                event.currentTarget.classList.add('active');
+            if(window.event && window.event.currentTarget && window.event.currentTarget.classList && window.event.currentTarget.id !== 'instruments') {
+                window.event.currentTarget.classList.add('active');
             } else {
                 document.getElementById('instruments-nav').classList.add('active');
             }
@@ -772,9 +894,69 @@
             if(codeKey === 's-harit') document.getElementById('shastra-acharya-harit').style.display = 'block';
             
             // Re-level button tracking states visually
-            const container = event.currentTarget.parentNode;
-            container.querySelectorAll('.option-btn').forEach(btn => btn.style.backgroundColor = '#555');
-            event.currentTarget.style.backgroundColor = '#800020';
+            document.getElementById('btn-sushrut').style.backgroundColor = '#555';
+            document.getElementById('btn-vagbhat').style.backgroundColor = '#555';
+            document.getElementById('btn-palkapya').style.backgroundColor = '#555';
+            document.getElementById('btn-harit').style.backgroundColor = '#555';
+            
+            if(window.event) window.event.currentTarget.style.backgroundColor = '#800020';
+        }
+
+        /* DYNAMIC SHASTRA KARMA SYSTEM SELECTOR ENGINE */
+        function displaySamhitaKarma(val) {
+            const out = document.getElementById('karma-dropdown-output');
+            if(!val) { out.style.display='none'; return; }
+            out.style.display = 'block';
+
+            let items = [];
+            if(val === 'sushrut-sam') {
+                items = ["Chedana", "Bhedana", "Lekhana", "Vedhana", "Eshan", "Aaharan", "Visravan", "Seevan"];
+            } else if(val === 'charak-sam') {
+                items = ["Patana", "Vyadhana", "Chedana", "Lekhana", "Prachhana", "Seevana"];
+            } else if(val === 'ashtang-sam') {
+                items = ["Utpatana", "Patana", "Seevena", "Eshan", "Lekhan", "Prachhan", "Kuttana", "Chedana", "Bhedana", "Vedhana", "Manthan", "Graham", "Dahana"];
+            }
+
+            let html = `<h4>Active Surgical Operative System Components:</h4><ol>`;
+            items.forEach(i => { html += `<li><strong>${i}</strong></li>`; });
+            html += `</ol>`;
+            out.innerHTML = html;
+        }
+
+        /* DYNAMIC SHASTRA GUNA INFORMATION GENERATOR */
+        function displayGunaInfo(val) {
+            const out = document.getElementById('guna-output-box');
+            if(!val) { out.style.display='none'; return; }
+            out.style.display = 'block';
+
+            const gunas = {
+                "1": "<strong>Sugrahani:</strong> Easy to hold with a firm and comfortable grip.",
+                "2": "<strong>Sulohani:</strong> Made of excellent, durable metals (such as high-quality iron or steel).",
+                "3": "<strong>Sudharani:</strong> Possesses sharp, smooth edges capable of making clean cuts.",
+                "4": "<strong>Surupani:</strong> Features a pleasing, well-crafted appearance.",
+                "5": "<strong>Susamahata Mukhagrani:</strong> The tip or functioning end must be perfectly shaped and precisely aligned.",
+                "6": "<strong>Akaralani:</strong> Must not have serrated, notched, or jagged edges."
+            };
+            out.innerHTML = `<p>${gunas[val]}</p>`;
+        }
+
+        /* DYNAMIC SHASTRA DOSHA INFORMATION GENERATOR */
+        function displayDoshaInfo(val) {
+            const out = document.getElementById('dosha-output-box');
+            if(!val) { out.style.display='none'; return; }
+            out.style.display = 'block';
+
+            const doshas = {
+                "1": "<strong>Vakra Dhara:</strong> Crooked or bent cutting edge",
+                "2": "<strong>Kuntha Dhara:</strong> Blunt cutting edge",
+                "3": "<strong>Khanda Dhara:</strong> Broken, jagged, or chipped cutting edge",
+                "4": "<strong>Khara Dhara:</strong> Rough or uneven cutting edge",
+                "5": "<strong>Ati Sthula:</strong> Too thick, bulky, or big",
+                "6": "<strong>Atyalpam:</strong> Too small",
+                "7": "<strong>Atidirgha:</strong> Too long",
+                "8": "<strong>Atihrsva:</strong> Too short"
+            };
+            out.innerHTML = `<p>${doshas[val]}</p>`;
         }
 
         function handleProcedureChange(value) {
@@ -788,7 +970,7 @@
                 placeholderDiv.style.display = 'none';
             } else {
                 appendicectomyDiv.style.display = 'none';
-                placeholderDiv.style.block = 'block';
+                placeholderDiv.style.display = 'block';
             }
         }
 
