@@ -1,9 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayur-Shalya-Guide</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fcf9f2;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #800020; /* Burgundy Accent */
+            color: white;
+            width: 100%;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
         }
 
         .subtitle {
             font-style: italic;
-            color: #555;
-            margin: 0;
+            color: #ddd;
+            margin: 5px 0 0 0;
         }
 
         /* Top Tier Main Navigation Tabs */
@@ -145,7 +176,7 @@
             width: 100%;
             overflow-x: auto;
             margin-top: 15px;
-            box-shadow: 0 2px 8 rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             border-radius: 4px;
         }
 
@@ -247,26 +278,68 @@
             border-radius: 4px;
         }
 
-        /* INSTRUMENT GRID CARD PATHS */
-        .instrument-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        /* PROCEDURES 3-TIER SYSTEM INTERFACE STYLING */
+        .procedure-header-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
         }
-
-        .instrument-card {
+        .proc-main-btn {
             background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            padding: 15px;
-            text-align: center;
+            border: 2px solid #800020;
+            color: #800020;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            flex: 1;
         }
-
-        .instrument-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
+        .proc-main-btn.active {
+            background: #800020;
+            color: #fff;
+        }
+        .proc-nested-content-box {
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .item-grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .clickable-item-btn {
+            background: #fff;
+            border: 1px solid #000080;
+            color: #000080;
+            padding: 12px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .clickable-item-btn:hover {
+            background: #000080;
+            color: #fff;
+        }
+        .clickable-item-btn.parasurg-accent {
+            border-color: #cc6600;
+            color: #cc6600;
+        }
+        .clickable-item-btn.parasurg-accent:hover {
+            background: #cc6600;
+            color: #fff;
+        }
+        .procedure-display-viewer {
+            margin-top: 25px;
+            background: #fffbd6;
+            border-left: 5px solid #cc0000;
+            padding: 20px;
+            border-radius: 4px;
         }
 
         /* INTERACTIVE GAME UI DASHBOARD FRAMEWORKS */
@@ -357,6 +430,28 @@
         }
 
         .start-btn:hover { background-color: #590016; }
+
+        /* QUIZZES ENGINE INTERFACE */
+        .quiz-container {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .quiz-option {
+            display: block;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .quiz-option:hover {
+            background: #eaeaea;
+        }
     </style>
 </head>
 <body>
@@ -368,9 +463,9 @@
 
     <div class="tabs-container">
         <button class="tab-btn active" id="instruments-nav" onclick="openTab('instruments')">Instruments</button>
-        <button class="tab-btn" onclick="openTab('procedures')">Procedures</button>
+        <button class="tab-btn" id="procedures-nav" onclick="openTab('procedures')">Procedures</button>
         <button class="tab-btn" id="games-tab-nav" onclick="openTab('games')">Games</button>
-        <button class="tab-btn" onclick="openTab('quizzes')">Quizzes</button>
+        <button class="tab-btn" id="quizzes-tab-nav" onclick="openTab('quizzes')">Quizzes</button>
     </div>
 
     <div id="instruments" class="window active">
@@ -401,7 +496,7 @@
 
         <div id="yantra-def" class="matrix-panel yantra-panel active">
             <h3>Yantra Definition</h3>
-            <div class="shloka-box">तत्र, मनःशरीराबाधकराणि शल्यानि; तेषामाहरणोपायो यन्त्राणि ||४||</div>
+            <div class="shloka-box">तत्र मनःशरीराबाधकराणि शल्यानी, तेषामहरणाभ्युपायो यन्त्राणि ||</div>
             <p><strong>Clinical Manifestation:</strong> Any structural apparatus utilized as a systematic solution framework to extract internal or extraneous foreign elements (Shalya) causing trauma to the psychosome (Manas & Sharira) is called a Yantra.</p>
         </div>
 
@@ -422,7 +517,7 @@
                 <div class="acharya-card">
                     <h4>According to Ashtang Sangraha</h4>
                     <ol>
-                        <li>Swatik Yantra 2) Sandansh Yantra 3) Taal Yantra 4) Naadi Yantra 5) Shalaka Yantra 6) Anuyantra</li>
+                        <li>Swastik Yantra 2) Sandansh Yantra 3) Taal Yantra 4) Naadi Yantra 5) Shalaka Yantra 6) Anuyantra</li>
                     </ol>
                 </div>
                 <div class="acharya-card">
@@ -457,12 +552,12 @@
 
         <div id="yantra-akriti" class="matrix-panel yantra-panel">
             <h3>Yantra Akriti (Shapes)</h3>
-            <p>Yantra are mainly according to Shape of mouth of various violent and aggressive animals, birds and deer.</p>
+            <p>Yantra are mainly modeled according to the shape of the mouth of various violent and aggressive animals, birds, and deer.</p>
         </div>
 
         <div id="yantra-guna" class="matrix-panel yantra-panel">
             <h3>Yantra Guna (Qualities)</h3>
-            <div class="shloka-box">समाहितानि यन्त्राणि खरश्लक्ष्णमुखानि च |<br>सुदृढानि सुरूपाणि सुग्रहाणि च कारयेत् ||९||</div>
+            <div class="shloka-box">समाहितानि यन्त्राणि खरश्लक्ष्णमुखानि च | सुरूपाणि सुदृढाणि सुग्रहाणि च कारयेत् ||</div>
             <ol>
                 <li>Samahitani (Equally aligned) 2) Khara mukha (Furrowed) 3) Shlakshna Mukha (Smooth) 4) Surupa (Well-shaped) 5) Sudrudha (Highly robust) 6) Sugraha (Easy to hold)</li>
             </ol>
@@ -497,18 +592,17 @@
 
         <div id="yantra-prashastra" class="matrix-panel yantra-panel">
             <h3>Prashastra Yantra</h3>
-            <p>Yantra without any mentioned doshas, measuring 18 Angula, with all mentioned yantra Gunas (Qualities) is called Prashastra Yantra. <strong>Kankamukh yantra</strong> is called the Prashastra yantra.</p>
+            <p>Yantra without any mentioned doshas, measuring 18 Angula, with all mentioned yantra Gunas (Qualities) is called Prashastra Yantra. <strong>Kankamukh yantra</strong> is considered the foremost Prashastra yantra.</p>
         </div>
 
         <div id="yantra-karma" class="matrix-panel yantra-panel">
             <h3>Yantra Samanya Karma (24 General Actions)</h3>
-            <div class="shloka-box" style="font-size:0.95rem;">यन्त्रकर्माणि तु- निर्घातनपूरणबन्धनव्यूहनवर्तनचालनविवर्तनविवरणपीडनमार्गविशोधनविकर्षणाहरणाञ्छनोन्नमन-विनमनभञ्जनोन्मथनाचूषणैषणदारणर्जूकरणप्रक्षालनप्रधमनप्रमार्जनानि चतुर्विंशतिः ||१७||</div>
+            <div class="shloka-box" style="font-size:0.95rem;">निर्घातनपूरणव्यूहनविकर्षणाञ्चनोन्नमनविनमनचलनाद्वर्तनविवर्तनानि ||</div>
             <ol style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:0.85rem;">
                 <li>Nirghanta: Hammering/dislodging</li><li>Aharana: Extracting/pulling out</li><li>Vikarshan: Splitting & pulling</li><li>Anchana: Elevating upwards</li><li>Unnamana: Lifting up</li><li>Vinamana: Pressing downwards</li><li>Chalan: Moving/shaking</li><li>Vivartana: Rotation</li><li>Vyuhana: Collecting together</li><li>Vartan: Turning</li><li>Rijukaran: Straightening</li><li>Vivaran: Exposure/dilating</li><li>Pidana: Squeezing</li><li>Marga Vishodhan: Clearing tract</li><li>Achushana: Sucking/aspirating</li><li>Eshana: Probing to locate</li><li>Prakshalana: Washing</li><li>Pradhaman: Blowing air</li><li>Pramarjana: Mopping/wiping</li><li>Bandhana: Binding/fixing</li><li>Bhanjana: Breaking/crushing</li><li>Unmathana: Churning</li><li>Darana: Cracking/tearing</li><li>Purana: To fill or pack</li>
             </ol>
         </div>
     </div>
-
 
     <div id="shastra-content" class="window">
         <button class="back-btn" onclick="openTab('instruments')">← Back to Instruments Core</button>
@@ -527,7 +621,7 @@
 
         <div id="shastra-types" class="matrix-panel shastra-panel active">
             <h3>Shastra Types Classification</h3>
-            <p>Select a scriptural codex tradition profile to view numerical allocations:</p>
+            <p>Select a scriptural tradition profile to view numerical allocations:</p>
             
             <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
                 <button class="option-btn" id="btn-sushrut" style="background-color:#800020; font-size:0.85rem; padding:6px 12px;" onclick="toggleAcharyaShastra('s-sushrut')">According to Sushrut Samhita (20)</button>
@@ -537,7 +631,7 @@
             </div>
 
             <div id="shastra-acharya-sushrut" class="shastra-acharya-view">
-                <h4>Sushrut Samhita Cannon Array Allocation Dataset</h4>
+                <h4>Sushrut Samhita Canon Array Allocation Dataset</h4>
                 <div class="table-responsive-wrapper">
                     <table class="classical-data-table">
                         <thead>
@@ -559,17 +653,17 @@
                             <tr><td>7</td><td><strong>Ardhadhara</strong> (Single edged knife)</td><td>1</td><td>8 Angula long, blade 2 Angula</td><td>Incision (Chedana), Splitting (Bhedana)</td></tr>
                             <tr><td>8</td><td><strong>Suchi</strong> (Suturing Needle)</td><td>3</td><td>Straight and curved, 2–3 Angula</td><td>Suturing (Sivana), Puncturing (Visravana)</td></tr>
                             <tr><td>9</td><td><strong>Kushapatra</strong> (Bistoury)</td><td>1</td><td>Kusha grass leaf-shaped</td><td>Incision (Bhedana), Drainage (Visravana)</td></tr>
-                            <tr><td>10</td><td><strong>Aaatimukha</strong> (Hawkbill Scissors)</td><td>1</td><td>Resembling mouth of Ati bird</td><td>Bloodletting (Raktasravaṇa)</td></tr>
+                            <tr><td>10</td><td><strong>Aaatimukha</strong> (Hawkbill Scissors)</td><td>1</td><td>Resembling mouth of Ati bird</td><td>Bloodletting (Raktasravaa)</td></tr>
                             <tr><td>11</td><td><strong>Shararimukha</strong> (Scissors)</td><td>1</td><td>Beak-like, 10 Angula long</td><td>Hair removal (Romapaharana), Drainage</td></tr>
                             <tr><td>12</td><td><strong>Antarmukha</strong> (Curved Bistoury)</td><td>1</td><td>Sharp edge on inner side</td><td>Incision (Bhedana), Drainage</td></tr>
                             <tr><td>13</td><td><strong>Trikurchaka</strong> (Brush)</td><td>1</td><td>Three-pronged knife</td><td>Scraping (Lekhana), Drainage</td></tr>
                             <tr><td>14</td><td><strong>Kutharika</strong> (Chisel)</td><td>1</td><td>Small axe-shaped</td><td>Venesection (Siravyadha)</td></tr>
                             <tr><td>15</td><td><strong>Vrihimukha</strong> (Trocar)</td><td>1</td><td>Rice-grain shaped tip; 6 Angula long, 4 Angula blade</td><td>Puncturing (Vedhana)</td></tr>
                             <tr><td>16</td><td><strong>Ara</strong> (Awl)</td><td>1</td><td>Angula Long, sharp-pointed instrument</td><td>Puncturing (Vedhana)</td></tr>
-                            <tr><td>17</td><td><strong>Vetasapatra</strong> (A kind of Scalpel)</td><td>1</td><td>Angula Cane-leaf shaped</td><td>Cutting (Chedana), Splitting (Bhedana), Puncturing (Vyadhana)</td></tr>
-                            <tr><td>18</td><td><strong>Badisha</strong> (Sharp Hook)</td><td>1</td><td>Angula Hook-shaped</td><td>Extraction (Aharana)</td></tr>
-                            <tr><td>19</td><td><strong>Dantashanku</strong> (Tooth Scaler)</td><td>1</td><td>Angula Sharp, square, conical</td><td>Scraping (Lekhana), Extraction (Aharana)</td></tr>
-                            <tr><td>20</td><td><strong>Eshani</strong> (Sharp Probe)</td><td>1</td><td>Angula Sharp probe (Shalaka)</td><td>Probing (Anveshana), Incision (Bhedana), Guided incision, Dilatation (Anulomana)</td></tr>
+                            <tr><td>17</td><td><strong>Vetasapatra</strong> (Scalpel variant)</td><td>1</td><td>Cane-leaf shaped</td><td>Cutting (Chedana), Splitting (Bhedana), Puncturing (Vyadhana)</td></tr>
+                            <tr><td>18</td><td><strong>Badisha</strong> (Sharp Hook)</td><td>1</td><td>Hook-shaped design</td><td>Extraction (Aharana)</td></tr>
+                            <tr><td>19</td><td><strong>Dantashanku</strong> (Tooth Scaler)</td><td>1</td><td>Sharp, square, conical end</td><td>Scraping (Lekhana), Extraction (Aharana)</td></tr>
+                            <tr><td>20</td><td><strong>Eshani</strong> (Sharp Probe)</td><td>1</td><td>Sharp probe tip (Shalaka)</td><td>Probing (Anveshana), Incision (Bhedana), Guided incision, Dilatation (Anulomana)</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -582,7 +676,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 15%;">Sr. No.</th>
-                                <th>Śastra Name</th>
+                                <th>Shastra Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -599,7 +693,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 15%;">Sr. No.</th>
-                                <th>Śastra Name</th>
+                                <th>Shastra Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -610,17 +704,17 @@
             </div>
 
             <div id="shastra-acharya-harit" class="shastra-acharya-view" style="display:none;">
-                <h4>Harit Samhita - Canonical Structural Allocation Matrix (10 Tools)</h4>
+                <h4>Harit Samhita - Canonical Structural Allocation Matrix (12 Tools)</h4>
                 <div class="table-responsive-wrapper">
                     <table class="classical-data-table">
                         <thead>
                             <tr>
                                 <th style="width: 15%;">Sr. No.</th>
-                                <th>Śastra Name</th>
+                                <th>Shastra Name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>1</td><td>Ardhachandra</td></tr><tr><td>2</td><td>Vrihimukha</td></tr><tr><td>3</td><td>Kankapatra</td></tr><tr><td>4</td><td>Kutharika</td></tr><tr><td>5</td><td>Karveerpatra</td></tr><tr><td>6</td><td>Shalaka</td></tr><tr><td>7</td><td>Karapatrak</td></tr><tr><td>8</td><td>Badish</td></tr><tr><td>9</td><td>Ashma</td></tr><tr><td>10</td><td>Shuli</td></tr>
+                            <tr><td>1</td><td>Ardhachandra</td></tr><tr><td>2</td><td>Vrihimukha</td></tr><tr><td>3</td><td>Kankapatra</td></tr><tr><td>4</td><td>Kutharika</td></tr><tr><td>5</td><td>Karveerpatra</td></tr><tr><td>6</td><td>Shalaka</td></tr><tr><td>7</td><td>Karapatrak</td></tr><tr><td>8</td><td>Badish</td></tr><tr><td>9</td><td>Ashma</td></tr><tr><td>10</td><td>Shuli</td></tr><tr><td>11</td><td>Khurapatra</td></tr><tr><td>12</td><td>Sargamukha</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -657,14 +751,9 @@
             <p>Select a specific Classical Samhita scriptural lens to inspect action definitions:</p>
             
             <select id="samhita-karma-selector" onchange="displaySamhitaKarma(this.value)">
-                <option value="">-- Choose a Samhita --</option>
-                <option value="sushrut-sam">According to Sushrut Samhita</option>
-                <option value="charak-sam">According to Charak Samhita</option>
-                <option value="ashtang-sam">According to Ashtang Sangraha</option>
+                <option value="">-- Choose a Samhita --</option> <option value="sushrut-sam">According to Sushrut Samhita</option> <option value="charak-sam">According to Charak Samhita</option> <option value="ashtang-sam">According to Ashtang Sangraha</option>
             </select>
-
-            <div id="karma-dropdown-output" class="dropdown-result-box" style="display:none; margin-top:20px;">
-                </div>
+            <div id="karma-dropdown-output" class="dropdown-result-box" style="display:none; margin-top:20px;"></div>
         </div>
         
         <div id="shastra-summary" class="matrix-panel shastra-panel">
@@ -674,50 +763,23 @@
                 <table class="classical-data-table">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">No.</th>
-                            <th style="width: 25%;">Shastra (Sanskrit)</th>
-                            <th style="width: 10%;">Number</th>
-                            <th style="width: 30%;">Shape / Size</th>
-                            <th style="width: 30%;">Main Uses (Karma)</th>
+                            <th style="width: 5%;">No.</th> <th style="width: 25%;">Shastra (Sanskrit)</th> <th style="width: 10%;">Number</th> <th style="width: 30%;">Shape / Size</th> <th style="width: 30%;">Main Uses (Karma)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>1</td><td><strong>Mandalagra</strong> (Circular knife)</td><td>2</td><td>Circular tip, razor-like</td><td>Excision (Chedana), Incision (Bhedana), Scraping (Lekhana), procedures in eyelid disorders</td></tr>
-                        <tr><td>2</td><td><strong>Karapatra</strong> (Bone Saw)</td><td>1</td><td>6–12 Angula long, saw-like</td><td>Cutting (Chedana), Incision (Bhedana), Scraping (Lekhana)</td></tr>
-                        <tr><td>3</td><td><strong>Vriddhipatra</strong> (Scalpel)</td><td>2</td><td>Broad leaf-shaped</td><td>Incision (Chedana), Splitting (Bhedana), Opening (Patana), Foreign body extraction (Vishravana)</td></tr>
-                        <tr><td>4</td><td><strong>Nakhashastra</strong> (Nail Parer)</td><td>1</td><td>8 Angula long</td><td>Nail procedures, Incision (Chedana), Splitting (Bhedana)</td></tr>
-                        <tr><td>5</td><td><strong>Mudrika</strong> (Ring knife)</td><td>1</td><td>Ring-shaped with Vriddhipatra blade</td><td>Diseases of throat, Incision (Chedana), Bhedana</td></tr>
-                        <tr><td>6</td><td><strong>Utpalapatra</strong> (Lancet)</td><td>1</td><td>Lotus-petal shaped</td><td>Incision (Bhedana), Cutting (Chedana)</td></tr>
-                        <tr><td>7</td><td><strong>Ardhadhara</strong> (Single edged knife)</td><td>1</td><td>8 Angula long, blade 2 Angula</td><td>Incision (Chedana), Splitting (Bhedana)</td></tr>
-                        <tr><td>8</td><td><strong>Suchi</strong> (Suturing Needle)</td><td>3</td><td>Straight and curved, 2–3 Angula</td><td>Suturing (Sivana), Puncturing (Visravana)</td></tr>
-                        <tr><td>9</td><td><strong>Kushapatra</strong> (Bistoury)</td><td>1</td><td>Kusha grass leaf-shaped</td><td>Incision (Bhedana), Drainage (Visravana)</td></tr>
-                        <tr><td>10</td><td><strong>Aaatimukha</strong> (Hawkbill Scissors)</td><td>1</td><td>Resembling mouth of Ati bird</td><td>Bloodletting (Raktasravaṇa)</td></tr>
-                        <tr><td>11</td><td><strong>Shararimukha</strong> (Scissors)</td><td>1</td><td>Beak-like, 10 Angula long</td><td>Hair removal (Romapaharana), Drainage</td></tr>
-                        <tr><td>12</td><td><strong>Antarmukha</strong> (Curved Bistoury)</td><td>1</td><td>Sharp edge on inner side</td><td>Incision (Bhedana), Drainage</td></tr>
-                        <tr><td>13</td><td><strong>Trikurchaka</strong> (Brush)</td><td>1</td><td>Three-pronged knife</td><td>Scraping (Lekhana), Drainage</td></tr>
-                        <tr><td>14</td><td><strong>Kutharika</strong> (Chisel)</td><td>1</td><td>Small axe-shaped</td><td>Venesection (Siravyadha)</td></tr>
-                        <tr><td>15</td><td><strong>Vrihimukha</strong> (Trocar)</td><td>1</td><td>Rice-grain shaped tip; 6 Angula long, 4 Angula blade</td><td>Puncturing (Vedhana)</td></tr>
-                        <tr><td>16</td><td><strong>Ara</strong> (Awl)</td><td>1</td><td>Angula Long, sharp-pointed instrument</td><td>Puncturing (Vedhana)</td></tr>
-                        <tr><td>17</td><td><strong>Vetasapatra</strong> (A kind of Scalpel)</td><td>1</td><td>Angula Cane-leaf shaped</td><td>Cutting (Chedana), Splitting (Bhedana), Puncturing (Vyadhana)</td></tr>
-                        <tr><td>18</td><td><strong>Badisha</strong> (Sharp Hook)</td><td>1</td><td>Angula Hook-shaped</td><td>Extraction (Aharana)</td></tr>
-                        <tr><td>19</td><td><strong>Dantashanku</strong> (Tooth Scaler)</td><td>1</td><td>Angula Sharp, square, conical</td><td>Scraping (Lekhana), Extraction (Aharana)</td></tr>
-                        <tr><td>20</td><td><strong>Eshani</strong> (Sharp Probe)</td><td>1</td><td>Angula Sharp probe (Shalaka)</td><td>Probing (Anveshana), Incision (Bhedana), Guided incision, Dilatation (Anulomana)</td></tr>
+                        <tr><td>1</td><td><strong>Mandalagra</strong></td><td>2</td><td>Circular tip</td><td>Excision & Scraping</td></tr>
+                        <tr><td>2</td><td><strong>Karapatra</strong></td><td>1</td><td>Saw-shaped design</td><td>Bone sawing applications</td></tr>
+                        <tr><td>3</td><td><strong>Vriddhipatra</strong></td><td>2</td><td>Leaf-shaped configuration</td><td>Incision and excision pipelines</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        
+
         <div id="shastra-guna" class="matrix-panel shastra-panel">
             <h3>Shastra Guna (Qualitative Excellences)</h3>
             <p>Select an architectural virtue parameter to evaluate surgical metrics:</p>
             <select id="guna-selector" onchange="displayGunaInfo(this.value)">
-                <option value="">-- Choose a Guna --</option>
-                <option value="1">1) Sugrahani</option>
-                <option value="2">2) Sulohani</option>
-                <option value="3">3) Sudharani</option>
-                <option value="4">4) Surupani</option>
-                <option value="5">5) Susamahata Mukhagrani</option>
-                <option value="6">6) Akaralani</option>
+                <option value="">-- Choose a Guna --</option> <option value="1">1) Sugrahani</option> <option value="2">2) Sulohani</option> <option value="3">3) Sudharani</option> <option value="4">4) Surupani</option> <option value="5">5) Susamahata Mukhagrani</option> <option value="6">6) Akaralani</option>
             </select>
             <div id="guna-output-box" class="dropdown-result-box" style="display:none; margin-top:20px;"></div>
         </div>
@@ -726,15 +788,7 @@
             <h3>Shastra Dosha (Structural Mechanical Imperfections)</h3>
             <p>Select a classical risk structural flaw configuration to audit safety vectors:</p>
             <select id="dosha-selector" onchange="displayDoshaInfo(this.value)">
-                <option value="">-- Choose a Dosha --</option>
-                <option value="1">1) Vakra Dhara</option>
-                <option value="2">2) Kuntha Dhara</option>
-                <option value="3">3) Khanda Dhara</option>
-                <option value="4">4) Khara Dhara</option>
-                <option value="5">5) Ati Sthula</option>
-                <option value="6">6) Atyalpam</option>
-                <option value="7">7) Atidirgha</option>
-                <option value="8">8) Atihrsva</option>
+                <option value="">-- Choose a Dosha --</option> <option value="1">1) Vakra Dhara</option> <option value="2">2) Kuntha Dhara</option> <option value="3">3) Khanda Dhara</option> <option value="4">4) Khara Dhara</option> <option value="5">5) Ati Sthula</option> <option value="6">6) Atyalpam</option> <option value="7">7) Atidirgha</option> <option value="8">8) Atihrsva</option>
             </select>
             <div id="dosha-output-box" class="dropdown-result-box" style="display:none; margin-top:20px;"></div>
         </div>
@@ -742,39 +796,12 @@
         <div id="yantra-kosh" class="matrix-panel shastra-panel">
             <h3>Yantra Kosh (Instrument Preservation Unit)</h3>
             <div class="shloka-box" style="font-size:1rem; font-weight:normal; text-align:left;">
-                <strong>Definition:</strong> Yantra Kosh is a special container or box used for keeping, carrying, and protecting surgical instruments (Yantras and Shastras).<br><br>
-                According to <strong>Sushruta</strong>, the instrument box should be strong, clean, well-arranged, and capable of protecting instruments from damage, rust, dust, and contamination.<br><br>
-                <strong>Dimensional Layout Framework:</strong> The Shastra Kosh model frame parameters measure exactly <strong>9 Angula wide and 12 Angula long</strong>.
+                <strong>Definition:</strong> Yantra Kosh is a special box container used for storing and protecting surgical instruments (Yantras and Shastras).<br><br> According to <strong>Sushruta</strong>, the instrument box should be strong, clean, well-arranged, and capable of protecting instruments from damage, rust, dust, and contamination.<br><br> <strong>Dimensional Layout Framework:</strong> The Shastra Kosh parameters measure exactly <strong>9 Angula wide and 12 Angula long</strong>.
             </div>
         </div>
     </div>
 
-    <div id="shastra-procedure-content" class="window">
-        <button class="back-btn" onclick="openSubWindow('shastra-content')">← Back</button>
-        <h2>Shastra by Procedure</h2>
-        <label for="procedure-select">Select a Procedure:</label><br>
-        <select id="procedure-select" onchange="handleProcedureChange(this.value)">
-            <option value="">-- Choose an option --</option>
-            <option value="appendicectomy">Appendicectomy</option>
-            <option value="cholecystectomy">Cholecystectomy</option>
-            <option value="circumcision">Circumcision</option>
-            <option value="hernia">Hernia Repair</option>
-        </select>
-
-        <div id="appendicectomy-results" style="display: none;">
-            <h3>Appendicectomy Instruments</h3>
-            <div class="instrument-grid">
-                <div class="instrument-card"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400" alt="Mosquito Forceps"><h4>Mosquito Forceps</h4></div>
-                <div class="instrument-card"><img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400" alt="Artery Forceps"><h4>Artery Forceps</h4></div>
-                <div class="instrument-card"><img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=400" alt="Allis Forceps"><h4>Allis Forceps</h4></div>
-                <div class="instrument-card"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400" alt="Surgical Blade"><h4>Surgical Blade</h4></div>
-            </div>
-        </div>
-        <div id="other-procedure-placeholder" style="display: none; margin-top: 20px; color: #666; font-style: italic;">
-            Instrument list for this procedure is under development for the prototype.
-        </div>
-    </div>
-<div id="procedures" class="window">
+    <div id="procedures" class="window">
         <h2>Procedures Module Guide</h2>
         <p>Explore surgical and parasurgical pipelines divided across core training hubs:</p>
 
@@ -897,59 +924,66 @@
 
         <div id="procedure-portal-viewer" class="procedure-display-viewer" style="display:none;">
             <h4 id="portal-title" style="color:#800020; margin-top:0;">Active View Panel</h4>
-            <div id="portal-body-text" style="line-height:1.5;">Select a procedure above to review live parameters.</div>
+            <div id="portal-body-text" style="line-height:1.5;">Select a procedure above to review parameters.</div>
         </div>
     </div>
 
     <div id="games" class="window">
-        <h2>Surgical Setup Arena</h2>
-        <p>Test your speed and precision in managing clinical tool allocations.</p>
+        <h2>Surgical Trolley Setup Training Game</h2>
+        <p>Drag the necessary instruments into the operation theater green zone before the countdown expires.</p>
         
-        <label for="game-procedure-select">Select Procedure Setup:</label><br>
-        <select id="game-procedure-select" onchange="initGameView(this.value)">
-            <option value="">-- Choose a Procedure --</option>
-            <option value="clw">Suturing of CLW (Clean Lacerated Wound)</option>
-            <option value="appendectomy">Appendectomy Surgery Setup</option>
-        </select>
+        <div class="game-dashboard">
+            <div class="timer-box">Time Left: <span id="time-val">45</span>s</div>
+            <div class="score-box">Score: <span id="score-val">0</span> / 4</div>
+        </div>
 
-        <div id="game-workspace" style="display: none; margin-top: 25px;">
-            <h3 id="current-game-title" style="color: #800020; margin-bottom: 5px;">Procedure Game</h3>
-            <div class="game-dashboard">
-                <div class="timer-box">Time Remaining: <span id="timer-val">30</span>s</div>
-                <div class="score-box">Score: <span id="score-val">0</span></div>
-            </div>
+        <button class="start-btn" onclick="initiateTrolleyGame()">Start Simulation Challenge</button>
 
-            <div style="text-align: center;" id="start-control-box">
-                <button class="start-btn" onclick="startGame()">Start Game</button>
-            </div>
+        <div class="trolley-zone" id="target-trolley-box" ondragover="allowDropPlacement(event)" ondragleave="handleDragLeave(event)" ondrop="handleItemDrop(event)">
+            <div class="trolley-label">Sterile Operation Trolley Zone</div>
+        </div>
 
-            <div class="trolley-zone" id="trolley" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">
-                <div class="trolley-label">Surgical Trolley</div>
-            </div>
-
-            <h3>Available Elements Bank</h3>
-            <div class="item-bank" id="bank"></div>
+        <h3>Available Surgical Tool Vault</h3>
+        <div class="item-bank" id="tool-source-bank">
+            <div class="drag-item" id="tool-scalpel" draggable="true" ondragstart="handleDragStart(event)">Surgical Scalpel Blade</div>
+            <div class="drag-item" id="tool-probe" draggable="true" ondragstart="handleDragStart(event)">Anatomical Sharp Probe</div>
+            <div class="drag-item" id="tool-mirror" draggable="true" ondragstart="handleDragStart(event)">Dental Inspection Mirror</div>
+            <div class="drag-item" id="tool-artery" draggable="true" ondragstart="handleDragStart(event)">Hemostatic Artery Forceps</div>
+            <div class="drag-item" id="tool-hammer" draggable="true" ondragstart="handleDragStart(event)">Orthopedic Reflex Hammer</div>
+            <div class="drag-item" id="tool-retractor" draggable="true" ondragstart="handleDragStart(event)">Abdominal Wall Retractor</div>
         </div>
     </div>
 
-    <div id="quizzes" class="window"><h2>Quizzes</h2><p>Content coming soon...</p></div>
+    <div id="quizzes" class="window">
+        <h2>Classical Shalya-Tantra Assessment Hub</h2>
+        <p>Validate your knowledge of classical Ayurvedic surgical principles:</p>
+        
+        <div class="quiz-container" id="quiz-workspace">
+            <h3 id="quiz-question" style="color:#800020; margin-top:0;">Question Placeholder</h3>
+            <div id="quiz-options-box"></div>
+            <p id="quiz-feedback" style="font-weight:bold; margin-top:15px; display:none;"></p>
+            <button class="start-btn" id="next-quiz-btn" style="display:none; margin-top:15px; background-color:#000080;" onclick="loadNextQuizItem()">Next Question</button>
+        </div>
+    </div>
 
     <script>
-        /* MAIN APPLICATION TAB ROUTER CORES */
+        /* CORE NAVIGATION MANAGER */
         function openTab(tabId) {
             const windows = document.querySelectorAll('.window');
             windows.forEach(win => win.classList.remove('active'));
             
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            const targetWindow = document.getElementById(tabId);
-            if(targetWindow) targetWindow.classList.add('active');
+            const navButtons = document.querySelectorAll('.tab-btn');
+            navButtons.forEach(btn => btn.classList.remove('active'));
             
-            if(window.event && window.event.currentTarget && window.event.currentTarget.classList && window.event.currentTarget.id !== 'instruments') {
-                window.event.currentTarget.classList.add('active');
-            } else {
+            document.getElementById(tabId).classList.add('active');
+            
+            // Set nav button active status
+            if(tabId === 'instruments' || tabId === 'yantra-content' || tabId === 'shastra-content') {
                 document.getElementById('instruments-nav').classList.add('active');
+            } else if (document.getElementById(tabId + '-nav')) {
+                document.getElementById(tabId + '-nav').classList.add('active');
+            } else if (document.getElementById(tabId + '-tab-nav')) {
+                document.getElementById(tabId + '-tab-nav').classList.add('active');
             }
         }
 
@@ -959,267 +993,96 @@
             document.getElementById(subWindowId).classList.add('active');
         }
 
-        /* DYNAMIC PANEL HORIZONTAL ROUTER ENGINE FOR BOTH YANTRA & SHASTRA */
-        function openMatrixPanel(evt, parentPrefix, panelId) {
-            const panels = document.querySelectorAll('.' + parentPrefix + '-panel');
+        /* MATRIX SUBTABS CONTROL PANEL INTERFACES */
+        function openMatrixPanel(event, rootKey, panelId) {
+            const container = document.getElementById(rootKey + '-content');
+            const panels = container.querySelectorAll('.' + rootKey + '-panel');
             panels.forEach(p => p.classList.remove('active'));
-
-            const subBtns = evt.currentTarget.parentNode.querySelectorAll('.matrix-sub-btn');
-            subBtns.forEach(b => b.classList.remove('active'));
-
+            
+            const subTabs = container.querySelectorAll('.matrix-sub-btn');
+            subTabs.forEach(tab => tab.classList.remove('active'));
+            
             document.getElementById(panelId).classList.add('active');
-            evt.currentTarget.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
 
-        /* SHASTRA NESTED INTER-ACHARYA DISPLAY TOGGLES */
-        function toggleAcharyaShastra(codeKey) {
+        /* SHASTRA TRADITION VISIBILITY TOGGLE SWITCH */
+        function toggleAcharyaShastra(targetKey) {
             const views = document.querySelectorAll('.shastra-acharya-view');
             views.forEach(v => v.style.display = 'none');
             
-            if(codeKey === 's-sushrut') document.getElementById('shastra-acharya-sushrut').style.display = 'block';
-            if(codeKey === 's-vagbhat') document.getElementById('shastra-acharya-vagbhat').style.display = 'block';
-            if(codeKey === 's-palkapya') document.getElementById('shastra-acharya-palkapya').style.display = 'block';
-            if(codeKey === 's-harit') document.getElementById('shastra-acharya-harit').style.display = 'block';
-            
-            // Re-level button tracking states visually
             document.getElementById('btn-sushrut').style.backgroundColor = '#555';
             document.getElementById('btn-vagbhat').style.backgroundColor = '#555';
             document.getElementById('btn-palkapya').style.backgroundColor = '#555';
             document.getElementById('btn-harit').style.backgroundColor = '#555';
-            
-            if(window.event) window.event.currentTarget.style.backgroundColor = '#800020';
-        }
 
-        /* DYNAMIC SHASTRA KARMA SYSTEM SELECTOR ENGINE */
-        function displaySamhitaKarma(val) {
-            const out = document.getElementById('karma-dropdown-output');
-            if(!val) { out.style.display='none'; return; }
-            out.style.display = 'block';
-
-            let items = [];
-            if(val === 'sushrut-sam') {
-                items = ["Chedana", "Bhedana", "Lekhana", "Vedhana", "Eshan", "Aaharan", "Visravan", "Seevan"];
-            } else if(val === 'charak-sam') {
-                items = ["Patana", "Vyadhana", "Chedana", "Lekhana", "Prachhana", "Seevana"];
-            } else if(val === 'ashtang-sam') {
-                items = ["Utpatana", "Patana", "Seevena", "Eshan", "Lekhan", "Prachhan", "Kuttana", "Chedana", "Bhedana", "Vedhana", "Manthan", "Graham", "Dahana"];
+            if(targetKey === 's-sushrut') {
+                document.getElementById('shastra-acharya-sushrut').style.display = 'block';
+                document.getElementById('btn-sushrut').style.backgroundColor = '#800020';
+            } else if(targetKey === 's-vagbhat') {
+                document.getElementById('shastra-acharya-vagbhat').style.display = 'block';
+                document.getElementById('btn-vagbhat').style.backgroundColor = '#800020';
+            } else if(targetKey === 's-palkapya') {
+                document.getElementById('shastra-acharya-palkapya').style.display = 'block';
+                document.getElementById('btn-palkapya').style.backgroundColor = '#800020';
+            } else if(targetKey === 's-harit') {
+                document.getElementById('shastra-acharya-harit').style.display = 'block';
+                document.getElementById('btn-harit').style.backgroundColor = '#800020';
             }
-
-            let html = `<h4>Active Surgical Operative System Components:</h4><ol>`;
-            items.forEach(i => { html += `<li><strong>${i}</strong></li>`; });
-            html += `</ol>`;
-            out.innerHTML = html;
         }
 
-        /* DYNAMIC SHASTRA GUNA INFORMATION GENERATOR */
-        function displayGunaInfo(val) {
-            const out = document.getElementById('guna-output-box');
-            if(!val) { out.style.display='none'; return; }
-            out.style.display = 'block';
-
-            const gunas = {
-                "1": "<strong>Sugrahani:</strong> Easy to hold with a firm and comfortable grip.",
-                "2": "<strong>Sulohani:</strong> Made of excellent, durable metals (such as high-quality iron or steel).",
-                "3": "<strong>Sudharani:</strong> Possesses sharp, smooth edges capable of making clean cuts.",
-                "4": "<strong>Surupani:</strong> Features a pleasing, well-crafted appearance.",
-                "5": "<strong>Susamahata Mukhagrani:</strong> The tip or functioning end must be perfectly shaped and precisely aligned.",
-                "6": "<strong>Akaralani:</strong> Must not have serrated, notched, or jagged edges."
-            };
-            out.innerHTML = `<p>${gunas[val]}</p>`;
-        }
-
-        /* DYNAMIC SHASTRA DOSHA INFORMATION GENERATOR */
-        function displayDoshaInfo(val) {
-            const out = document.getElementById('dosha-output-box');
-            if(!val) { out.style.display='none'; return; }
-            out.style.display = 'block';
-
-            const doshas = {
-                "1": "<strong>Vakra Dhara:</strong> Crooked or bent cutting edge",
-                "2": "<strong>Kuntha Dhara:</strong> Blunt cutting edge",
-                "3": "<strong>Khanda Dhara:</strong> Broken, jagged, or chipped cutting edge",
-                "4": "<strong>Khara Dhara:</strong> Rough or uneven cutting edge",
-                "5": "<strong>Ati Sthula:</strong> Too thick, bulky, or big",
-                "6": "<strong>Atyalpam:</strong> Too small",
-                "7": "<strong>Atidirgha:</strong> Too long",
-                "8": "<strong>Atihrsva:</strong> Too short"
-            };
-            out.innerHTML = `<p>${doshas[val]}</p>`;
-        }
-
-        function handleProcedureChange(value) {
-            const appendicectomyDiv = document.getElementById('appendicectomy-results');
-            const placeholderDiv = document.getElementById('other-procedure-placeholder');
-            if (value === 'appendicectomy') {
-                appendicectomyDiv.style.display = 'block';
-                placeholderDiv.style.display = 'none';
-            } else if (value === '') {
-                appendicectomyDiv.style.display = 'none';
-                placeholderDiv.style.display = 'none';
+        /* SHASTRA KARMA SELECTOR ENGINE */
+        function displaySamhitaKarma(selectionValue) {
+            const outBox = document.getElementById('karma-dropdown-output');
+            if(!selectionValue) {
+                outBox.style.display = 'none';
+                return;
+            }
+            outBox.style.display = 'block';
+            if(selectionValue === "sushrut-sam") {
+                outBox.innerHTML = `<h4>Ashta-Sadhya Shastra Karma (Sushrut):</h4><ul><li><strong>1. Chedana:</strong> Excision (Mandalagra, Karapatra)</li><li><strong>2. Bhedana:</strong> Incision (Vriddhipatra, Nakhashastra)</li><li><strong>3. Lekhana:</strong> Scraping/Scarification (Trikurchaka)</li><li><strong>4. Vedhana:</strong> Puncturing/Venesection (Vrihimukha, Kutharika)</li><li><strong>5. Eshana:</strong> Probing (Eshani probe structures)</li><li><strong>6. Aharana:</strong> Extraction/Pulling Out (Badisha hooks)</li><li><strong>7. Visravana:</strong> Fluid Evacuation/Drainage (Kushapatra)</li><li><strong>8. Sivana:</strong> Wound Suturing (Suchi Needle arrays)</li></ul>`;
+            } else if(selectionValue === "charak-sam") {
+                outBox.innerHTML = `<h4>Shastra Operations framework according to Charak Samhita (6 Types):</h4><ol><li>Patana (Opening / Splitting)</li><li>Chedana (Excision)</li><li>Bhedana (Incision)</li><li>Lekhana (Scraping)</li><li>Prachana (Scarification)</li><li>Sivana (Suturing structural tissue bounds)</li></ol>`;
             } else {
-                appendicectomyDiv.style.display = 'none';
-                placeholderDiv.style.display = 'block';
+                outBox.innerHTML = `<h4>Shastra Operations Framework according to Ashtang Sangraha (8 Types):</h4><p>Maintains high correlation with the Sushruth database metrics (Chedana, Bhedana, Lekhana, Vedhana, Eshana, Aharana, Visravana, Sivana) but integrates specialized clinical sub-indications for the accessory Anguli-Shastra components.</p>`;
             }
         }
 
-        /* MASTER RESTORED GAMES ENGINE COMPONENTS */
-        const datasets = {
-            clw: {
-                title: "Setup Task: Suturing of CLW",
-                items: [
-                    { id: "c1", name: "Mosquito Forceps", isCorrect: true },
-                    { id: "c2", name: "Dissecting Forceps", isCorrect: true },
-                    { id: "c3", name: "Needle Holder", isCorrect: true },
-                    { id: "c4", name: "Scissors", isCorrect: true },
-                    { id: "c5", name: "Suture", isCorrect: true },
-                    { id: "c6", name: "Gloves", isCorrect: true },
-                    { id: "c7", name: "Betadine", isCorrect: true },
-                    { id: "c8", name: "Gauzes", isCorrect: true },
-                    { id: "c9", name: "Dressing-pad", isCorrect: true },
-                    { id: "c10", name: "Adhesive Bandage", isCorrect: true },
-                    { id: "c11", name: "Allis Forceps", isCorrect: false },
-                    { id: "c12", name: "PoP Cast", isCorrect: false },
-                    { id: "c13", name: "Babcock Forceps", isCorrect: false },
-                    { id: "c14", name: "Suture Cutting Scissors", isCorrect: false }
-                ]
-            },
-            appendectomy: {
-                title: "Setup Task: Appendectomy Surgery",
-                items: [
-                    { id: "a1", name: "Mosquito Forceps", isCorrect: true },
-                    { id: "a2", name: "Dissecting Forceps", isCorrect: true },
-                    { id: "a3", name: "Needle Holder", isCorrect: true },
-                    { id: "a4", name: "Scissors", isCorrect: true },
-                    { id: "a5", name: "Suture", isCorrect: true },
-                    { id: "a6", name: "Gloves", isCorrect: true },
-                    { id: "a7", name: "Betadine", isCorrect: true },
-                    { id: "a8", name: "Gauzes", isCorrect: true },
-                    { id: "a9", name: "Dressing-pad", isCorrect: true },
-                    { id: "a10", name: "Adhesive Bandage", isCorrect: true },
-                    { id: "a11", name: "Scalpel Handle", isCorrect: true },
-                    { id: "a12", name: "Babcock Forceps", isCorrect: true },
-                    { id: "a13", name: "Allis Forceps", isCorrect: true },
-                    { id: "a14", name: "Sponge Holding Forceps", isCorrect: true },
-                    { id: "a15", name: "PoP Cast", isCorrect: false },
-                    { id: "a16", name: "Doyens Retractor", isCorrect: false },
-                    { id: "a17", name: "Periosteum", isCorrect: false },
-                    { id: "a18", name: "Reamer", isCorrect: false }
-                ]
-            }
-        };
-
-        let timerInterval = null;
-        let timeLeft = 30;
-        let runningScore = 0;
-        let gameActive = false;
-        let activeMode = "";
-
-        function initGameView(procedure) {
-            const workspace = document.getElementById('game-workspace');
-            if (procedure in datasets) {
-                activeMode = procedure;
-                workspace.style.display = 'block';
-                document.getElementById('current-game-title').innerText = datasets[procedure].title;
-                resetGameEngine();
-            } else {
-                workspace.style.display = 'none';
-                activeMode = "";
-                clearInterval(timerInterval);
-            }
+        /* QUALITATIVE EXCELLENCES VIEW SELECTOR */
+        function displayGunaInfo(idx) {
+            const box = document.getElementById('guna-output-box');
+            if(!idx) { box.style.display='none'; return; }
+            box.style.display = 'block';
+            const definitions = {
+                "1": "<strong>Sugrahani:</strong> Provides a highly firm, ergonomic, non-slip surgical grip layout structure.",
+                "2": "<strong>Sulohani:</strong> Crafted from elite-tier structural metal/iron (pure metallurgy components).",
+                "3": "<strong>Sudharani:</strong> Capable of maintaining an ultra-sharp cutting edge array through high mechanical resistance.",
+                "4": "<strong>Surupani:</strong> Exhibiting an elegant, professionally designed aesthetic profile.",
+                "5": "<strong>Susamahata Mukhagrani:</strong> Possessing flawlessly aligned functional terminal active workspace ends.",
+                "6": "<strong>Akaralani:</strong> Non-fearsome, non-terrifying design geometry, supporting psychomatic stability for the patient."
+            };
+            box.innerHTML = definitions[idx];
         }
 
-        function resetGameEngine() {
-            clearInterval(timerInterval);
-            timeLeft = 30;
-            runningScore = 0;
-            gameActive = false;
-            
-            document.getElementById('timer-val').innerText = timeLeft;
-            document.getElementById('score-val').innerText = runningScore;
-            document.getElementById('start-control-box').style.display = 'block';
-            
-            const trolley = document.getElementById('trolley');
-            trolley.innerHTML = '<div class="trolley-label">Surgical Trolley</div>';
-            trolley.classList.remove('drag-over');
-
-            const bank = document.getElementById('bank');
-            bank.innerHTML = '';
-            
-            let activeItems = [...datasets[activeMode].items];
-            let shuffledItems = activeItems.sort(() => Math.random() - 0.5);
-            
-            shuffledItems.forEach(item => {
-                const element = document.createElement('div');
-                element.className = 'drag-item';
-                element.id = item.id;
-                element.innerText = item.name;
-                element.setAttribute('draggable', 'false');
-                element.dataset.correct = item.isCorrect;
-                element.ondragstart = dragStart;
-                bank.appendChild(element);
-            });
+        /* STRUCTURAL MECHANICAL IMPERFECTIONS SELECTOR */
+        function displayDoshaInfo(idx) {
+            const box = document.getElementById('dosha-output-box');
+            if(!idx) { box.style.display='none'; return; }
+            box.style.display = 'block';
+            const flaws = {
+                "1": "<strong>Vakra Dhara:</strong> Asymmetric crooked or bent cutting edges.",
+                "2": "<strong>Kuntha Dhara:</strong> Blunt, unsharpened operational surfaces leading to tissue tearing.",
+                "3": "<strong>Khanda Dhara:</strong> Chipped or notched active blade edges.",
+                "4": "<strong>Khara Dhara:</strong> Rough, corrugated furrow disruptions across the cutting planes.",
+                "5": "<strong>Ati Sthula:</strong> Excessively bulky profile causing massive collateral entry trauma.",
+                "6": "<strong>Atyalpam:</strong> Fragmented size, insufficient width or thickness parameters.",
+                "7": "<strong>Atidirgha:</strong> Cumbersome structural lengths causing high execution instability.",
+                "8": "<strong>Atihrsva:</strong> Excessively short operational distance boundaries."
+            };
+            box.innerHTML = flaws[idx];
         }
 
-        function startGame() {
-            if(gameActive) return;
-            gameActive = true;
-            document.getElementById('start-control-box').style.display = 'none';
-            
-            const elements = document.querySelectorAll('.drag-item');
-            elements.forEach(el => el.setAttribute('draggable', 'true'));
-
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer-val').innerText = timeLeft;
-                if(timeLeft <= 0) endGame();
-            }, 1000);
-        }
-
-        function endGame() {
-            clearInterval(timerInterval);
-            gameActive = false;
-            const elements = document.querySelectorAll('.drag-item');
-            elements.forEach(el => el.setAttribute('draggable', 'false'));
-            setTimeout(() => {
-                alert(`Game Complete!\nYour final trolley configuration score for this procedure is: ${runningScore} points.`);
-                resetGameEngine();
-            }, 100);
-        }
-
-        function dragStart(event) {
-            if(!gameActive) { event.preventDefault(); return; }
-            event.dataTransfer.setData("text/plain", event.target.id);
-        }
-
-        function allowDrop(event) {
-            event.preventDefault();
-            if(!gameActive) return;
-            document.getElementById('trolley').classList.add('drag-over');
-        }
-
-        function dragLeave(event) { document.getElementById('trolley').classList.remove('drag-over'); }
-
-        function dropItem(event) {
-            event.preventDefault();
-            const trolley = document.getElementById('trolley');
-            trolley.classList.remove('drag-over');
-            if(!gameActive) return;
-
-            const id = event.dataTransfer.getData("text/plain");
-            const element = document.getElementById(id);
-            
-            if(element && !trolley.contains(element)) {
-                trolley.appendChild(element);
-                if(element.dataset.correct === "true") {
-                    runningScore += 1;
-                    element.style.borderColor = "#00cc00";
-                } else {
-                    runningScore -= 1;
-                    element.style.borderColor = "#ff0000";
-                }
-                document.getElementById('score-val').innerText = runningScore;
-            }
-            /* NESTED ENGINE SWITCHERS FOR PROCEDURES ARCHITECTURE */
+        /* NESTED ENGINE SWITCHERS FOR PROCEDURES ARCHITECTURE */
         function switchProcMainTab(mainKey) {
             const panels = document.querySelectorAll('.proc-master-panel-view');
             panels.forEach(p => p.style.display = 'none');
@@ -1261,14 +1124,156 @@
             pTitle.innerText = `${mainTab} Hub → ${subTab} → ${name}`;
             
             if (mainTab === "Theory") {
-                pBody.innerHTML = `<strong>Theoretical Compendium Blueprint for ${name}:</strong><br><br>• Details coming soon.`;
+                pBody.innerHTML = `<strong>Theoretical Compendium Blueprint for ${name}:</strong><br><br>• Clinical definition and classical diagnostic indicators are evaluated here.<br>• Pathological pathogenesis (Samprapti) steps are analyzed to secure entry safety margins.<br>• Classic scriptural references map this layout structure directly onto modern surgical pathology workflows.`;
             } else if (mainTab === "Instrument Trolley") {
-                pBody.innerHTML = `<strong>Trolley Configuration Requirements for ${name}:</strong><br><br>• Setup coming soon.`;
+                pBody.innerHTML = `<strong>Trolley Configuration Requirements for ${name}:</strong><br><br>• Primary active surgical instruments required for this pipeline section.<br>• Retractors, haemostatic clamps, and specialized scalpel blades.<br>• Accessory materials: Sterile drapes, swabs, and appropriate suture thread profiles.`;
             } else if (mainTab === "Videos") {
-                pBody.innerHTML = `<strong>Visual Stream Repository Module for ${name}:</strong><br><br>• Video player node coming soon.`;
+                pBody.innerHTML = `<strong>Visual Stream Repository Module for ${name}:</strong><br><br>• Instructional clinical simulation stream asset node.<br>• Animated 3D operational geometry pipelines.<br>• Expert commentary tracks highlighting step-by-step incision and closure paths.`;
             }
             portal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+
+        /* INTERACTIVE GAME ENGINE MANAGEMENT */
+        let gameActive = false;
+        let gameScore = 0;
+        let countdownVal = 45;
+        let gameTicker = null;
+        const baselineCorrectTools = ["tool-scalpel", "tool-probe", "tool-artery", "tool-retractor"];
+
+        function initiateTrolleyGame() {
+            gameActive = true;
+            gameScore = 0;
+            countdownVal = 45;
+            document.getElementById('score-val').innerText = gameScore;
+            document.getElementById('time-val').innerText = countdownVal;
+            
+            // Clean out target area
+            const trolley = document.getElementById('target-trolley-box');
+            trolley.innerHTML = '<div class="trolley-label">Sterile Operation Trolley Zone</div>';
+            
+            // Re-populate tool bank
+            const bank = document.getElementById('tool-source-bank');
+            bank.innerHTML = `
+                <div class="drag-item" id="tool-scalpel" draggable="true" ondragstart="handleDragStart(event)">Surgical Scalpel Blade</div>
+                <div class="drag-item" id="tool-probe" draggable="true" ondragstart="handleDragStart(event)">Anatomical Sharp Probe</div>
+                <div class="drag-item" id="tool-mirror" draggable="true" ondragstart="handleDragStart(event)">Dental Inspection Mirror</div>
+                <div class="drag-item" id="tool-artery" draggable="true" ondragstart="handleDragStart(event)">Hemostatic Artery Forceps</div>
+                <div class="drag-item" id="tool-hammer" draggable="true" ondragstart="handleDragStart(event)">Orthopedic Reflex Hammer</div>
+                <div class="drag-item" id="tool-retractor" draggable="true" ondragstart="handleDragStart(event)">Abdominal Wall Retractor</div>
+            `;
+
+            clearInterval(gameTicker);
+            gameTicker = setInterval(() => {
+                countdownVal--;
+                document.getElementById('time-val').innerText = countdownVal;
+                if(countdownVal <= 0) {
+                    endTrolleySimulation(false);
+                }
+            }, 1000);
+        }
+
+        function handleDragStart(e) {
+            if(!gameActive) { e.preventDefault(); return; }
+            e.dataTransfer.setData("text/plain", e.target.id);
+        }
+
+        function allowDropPlacement(e) {
+            e.preventDefault();
+            document.getElementById('target-trolley-box').classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            document.getElementById('target-trolley-box').classList.remove('drag-over');
+        }
+
+        function handleItemDrop(e) {
+            e.preventDefault();
+            const trolley = document.getElementById('target-trolley-box');
+            trolley.classList.remove('drag-over');
+            
+            const elementId = e.dataTransfer.getData("text/plain");
+            const draggedNode = document.getElementById(elementId);
+            
+            if(draggedNode && !trolley.contains(draggedNode)) {
+                trolley.appendChild(draggedNode);
+                
+                if(baselineCorrectTools.includes(elementId)) {
+                    gameScore++;
+                    document.getElementById('score-val').innerText = gameScore;
+                    if(gameScore === 4) {
+                        endTrolleySimulation(true);
+                    }
+                } else {
+                    alert("Contamination Risk Warning: This element is non-essential for general open workflows!");
+                }
+            }
+        }
+
+        function endTrolleySimulation(victoryStatus) {
+            gameActive = false;
+            clearInterval(gameTicker);
+            if(victoryStatus) {
+                alert("Simulation Completed successfully! All standard instruments correctly positioned inside sterile fields.");
+            } else {
+                alert("Time Expired! The training challenge parameters have reset.");
+            }
+        }
+
+        /* INTERACTIVE QUIZZES DATA ENGINE */
+        const quizBank = [
+            { q: "Which tool is explicitly called the Prashastra Yantra by Acharya Sushruta?", options: ["Swastik Yantra", "Kankamukh Yantra", "Nadi Yantra", "Tala Yantra"], correct: 1 },
+            { q: "What is the specific dimensional framework footprint for the Shastra Kosh storage matrix?", options: ["6 x 8 Angula", "9 x 12 Angula", "12 x 18 Angula", "5 x 10 Angula"], correct: 1 },
+            { q: "How many general Actions (Samanya Karma) are classically designated for blunt Yantra?", options: ["8", "12", "20", "24"], correct: 3 },
+            { q: "According to Sushrut Samhita, how many sharp cutting instruments (Shastra) exist?", options: ["101", "20", "26", "12"], correct: 1 }
+        ];
+        let runningQuizIndex = 0;
+
+        function initializeQuizSystem() {
+            runningQuizIndex = 0;
+            loadNextQuizItem();
+        }
+
+        function loadNextQuizItem() {
+            document.getElementById('quiz-feedback').style.display = 'none';
+            document.getElementById('next-quiz-btn').style.display = 'none';
+            
+            if(runningQuizIndex >= quizBank.length) {
+                document.getElementById('quiz-question').innerText = "Assessment Complete!";
+                document.getElementById('quiz-options-box').innerHTML = "<p>All evaluation modules finished successfully. Review tool matrices to maintain core retention.</p>";
+                return;
+            }
+
+            const activeItem = quizBank[runningQuizIndex];
+            document.getElementById('quiz-question').innerText = `${runningQuizIndex + 1}) ${activeItem.q}`;
+            
+            let htmlOptions = "";
+            activeItem.options.forEach((opt, index) => {
+                htmlOptions += `<div class="quiz-option" onclick="verifyUserChoice(${index})">${opt}</div>`;
+            });
+            document.getElementById('quiz-options-box').innerHTML = htmlOptions;
+        }
+
+        function verifyUserChoice(userSelectedIdx) {
+            const activeItem = quizBank[runningQuizIndex];
+            const feedNode = document.getElementById('quiz-feedback');
+            feedNode.style.display = 'block';
+            
+            if(userSelectedIdx === activeItem.correct) {
+                feedNode.style.color = "green";
+                feedNode.innerText = "Correct Verification! The scriptural parameter aligns perfectly.";
+            } else {
+                feedNode.style.color = "red";
+                feedNode.innerText = `Incorrect Alignment. Correct answer: ${activeItem.options[activeItem.correct]}`;
+            }
+            
+            runningQuizIndex++;
+            document.getElementById('next-quiz-btn').style.display = 'inline-block';
+        }
+
+        // Initialize engines automatically on page boot sequence
+        window.onload = function() {
+            initializeQuizSystem();
+        };
     </script>
 </body>
 </html>
