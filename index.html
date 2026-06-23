@@ -1,39 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayur-Shalya-Guide</title>
-    <style>
-        /* Base Setup & Premium Serif Typography */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background-color: #fcfbfa;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            width: 100%;
-            background-color: #fff;
-            border-bottom: 3px double #800020; /* Deep Maroon */
-        }
-
-        h1 {
-            color: #800020;
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            letter-spacing: 1px;
         }
 
         .subtitle {
@@ -810,8 +774,132 @@
             Instrument list for this procedure is under development for the prototype.
         </div>
     </div>
+<div id="procedures" class="window">
+        <h2>Procedures Module Guide</h2>
+        <p>Explore surgical and parasurgical pipelines divided across core training hubs:</p>
 
-    <div id="procedures" class="window"><h2>Procedures</h2><p>Content coming soon...</p></div>
+        <div class="procedure-header-tabs">
+            <button class="proc-main-btn active" id="p-main-theory" onclick="switchProcMainTab('theory')">1) Theory</button>
+            <button class="proc-main-btn" id="p-main-trolley" onclick="switchProcMainTab('trolley')">2) Instrument Trolley</button>
+            <button class="proc-main-btn" id="p-main-videos" onclick="switchProcMainTab('videos')">3) Videos</button>
+        </div>
+
+        <div id="proc-panel-theory" class="proc-master-panel-view" style="display:block;">
+            <h3>Procedures → Theory Workspace</h3>
+            <div class="subtabs-matrix-row">
+                <button class="matrix-sub-btn active" id="sub-theory-surg" onclick="switchProcSubTab('theory', 'surgery')">a) Surgery</button>
+                <button class="matrix-sub-btn" id="sub-theory-para" onclick="switchProcSubTab('theory', 'parasurg')">b) Practical training skills Station for Parasurgical Procedures</button>
+            </div>
+
+            <div id="box-theory-surgery" class="proc-nested-content-box" style="display:block;">
+                <p style="color:#666; font-style:italic;">Select a surgery item to view its Theoretical framework:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Appendectomy')">1) Appendectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Cholecystectomy')">2) Cholecystectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Circumcision')">3) Circumcision</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Hydrocele')">4) Hydrocele</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Fistulectomy')">5) Fistulectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Fissurectomy')">6) Fissurectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Haemorrhoidectomy')">7) Haemorrhoidectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Theory', 'Surgery', 'Hernia Repair')">8) Hernia Repair</button>
+                </div>
+            </div>
+
+            <div id="box-theory-parasurg" class="proc-nested-content-box" style="display:none;">
+                <p style="color:#666; font-style:italic;">Select a parasurgical skills item to view its Theoretical data:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Agnikarma')">1) Agnikarma</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Ksharsutra')">2) Ksharsutra</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Raktamokshana')">3) Raktamokshana</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Application of Bandages , Slabs and Splints')">4) Application of Bandages , Slabs and Splints</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Urinary Catherization')">5) Urinary Catherization</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Ryles Tube insertion and Application')">6) Ryles Tube insertion and Application</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Injections IM/IV/SC/Intradermal')">7) Injections IM/IV/SC/Intradermal</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Incision and Drainage of Abscess')">8) Incision and Drainage of Abscess</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Theory', 'Parasurgical Station', 'Suturing of Open Wounds (CLW)')">9) Suturing of Open Wounds (CLW)</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="proc-panel-trolley" class="proc-master-panel-view" style="display:none;">
+            <h3>Procedures → Instrument Trolley Layout</h3>
+            <div class="subtabs-matrix-row">
+                <button class="matrix-sub-btn active" id="sub-trolley-surg" onclick="switchProcSubTab('trolley', 'surgery')">a) Surgery</button>
+                <button class="matrix-sub-btn" id="sub-trolley-para" onclick="switchProcSubTab('trolley', 'parasurg')">b) Practical training skills Station for Parasurgical Procedures</button>
+            </div>
+
+            <div id="box-trolley-surgery" class="proc-nested-content-box" style="display:block;">
+                <p style="color:#666; font-style:italic;">Select a surgery item to view its Trolley Setup:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Appendectomy')">1) Appendectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Cholecystectomy')">2) Cholecystectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Circumcision')">3) Circumcision</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Hydrocele')">4) Hydrocele</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Fistulectomy')">5) Fistulectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Fissurectomy')">6) Fissurectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Haemorrhoidectomy')">7) Haemorrhoidectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Instrument Trolley', 'Surgery', 'Hernia Repair')">8) Hernia Repair</button>
+                </div>
+            </div>
+
+            <div id="box-trolley-parasurg" class="proc-nested-content-box" style="display:none;">
+                <p style="color:#666; font-style:italic;">Select a parasurgical skills item to view its Trolley Requirements:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Agnikarma')">1) Agnikarma</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Ksharsutra')">2) Ksharsutra</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Raktamokshana')">3) Raktamokshana</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Application of Bandages , Slabs and Splints')">4) Application of Bandages , Slabs and Splints</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Urinary Catherization')">5) Urinary Catherization</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Ryles Tube insertion and Application')">6) Ryles Tube insertion and Application</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Injections IM/IV/SC/Intradermal')">7) Injections IM/IV/SC/Intradermal</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Incision and Drainage of Abscess')">8) Incision and Drainage of Abscess</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Instrument Trolley', 'Parasurgical Station', 'Suturing of Open Wounds (CLW)')">9) Suturing of Open Wounds (CLW)</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="proc-panel-videos" class="proc-master-panel-view" style="display:none;">
+            <h3>Procedures → Videos Vault</h3>
+            <div class="subtabs-matrix-row">
+                <button class="matrix-sub-btn active" id="sub-videos-surg" onclick="switchProcSubTab('videos', 'surgery')">a) Surgery</button>
+                <button class="matrix-sub-btn" id="sub-videos-para" onclick="switchProcSubTab('videos', 'parasurg')">b) Practical training skills Station for Parasurgical Procedures</button>
+            </div>
+
+            <div id="box-videos-surgery" class="proc-nested-content-box" style="display:block;">
+                <p style="color:#666; font-style:italic;">Select a surgery item to view its Video Stream:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Appendectomy')">1) Appendectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Cholecystectomy')">2) Cholecystectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Circumcision')">3) Circumcision</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Hydrocele')">4) Hydrocele</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Fistulectomy')">5) Fistulectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Fissurectomy')">6) Fissurectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Haemorrhoidectomy')">7) Haemorrhoidectomy</button>
+                    <button class="clickable-item-btn" onclick="viewProcedureDetail('Videos', 'Surgery', 'Hernia Repair')">8) Hernia Repair</button>
+                </div>
+            </div>
+
+            <div id="box-videos-parasurg" class="proc-nested-content-box" style="display:none;">
+                <p style="color:#666; font-style:italic;">Select a parasurgical skills item to view its Video Stream:</p>
+                <div class="item-grid-list">
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Agnikarma')">1) Agnikarma</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Ksharsutra')">2) Ksharsutra</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Raktamokshana')">3) Raktamokshana</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Application of Bandages , Slabs and Splints')">4) Application of Bandages , Slabs and Splints</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Urinary Catherization')">5) Urinary Catherization</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Ryles Tube insertion and Application')">6) Ryles Tube insertion and Application</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Injections IM/IV/SC/Intradermal')">7) Injections IM/IV/SC/Intradermal</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Incision and Drainage of Abscess')">8) Incision and Drainage of Abscess</button>
+                    <button class="clickable-item-btn parasurg-accent" onclick="viewProcedureDetail('Videos', 'Parasurgical Station', 'Suturing of Open Wounds (CLW)')">9) Suturing of Open Wounds (CLW)</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="procedure-portal-viewer" class="procedure-display-viewer" style="display:none;">
+            <h4 id="portal-title" style="color:#800020; margin-top:0;">Active View Panel</h4>
+            <div id="portal-body-text" style="line-height:1.5;">Select a procedure above to review live parameters.</div>
+        </div>
+    </div>
 
     <div id="games" class="window">
         <h2>Surgical Setup Arena</h2>
@@ -1131,6 +1219,55 @@
                 }
                 document.getElementById('score-val').innerText = runningScore;
             }
+            /* NESTED ENGINE SWITCHERS FOR PROCEDURES ARCHITECTURE */
+        function switchProcMainTab(mainKey) {
+            const panels = document.querySelectorAll('.proc-master-panel-view');
+            panels.forEach(p => p.style.display = 'none');
+            
+            const navBtns = document.querySelectorAll('.proc-main-btn');
+            navBtns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById('proc-panel-' + mainKey).style.display = 'block';
+            document.getElementById('p-main-' + mainKey).classList.add('active');
+            
+            document.getElementById('procedure-portal-viewer').style.display = 'none';
+        }
+
+        function switchProcSubTab(mainKey, subKey) {
+            const container = document.getElementById('proc-panel-' + mainKey);
+            const contentBoxes = container.querySelectorAll('.proc-nested-content-box');
+            contentBoxes.forEach(b => b.style.display = 'none');
+
+            const subBtns = container.querySelectorAll('.matrix-sub-btn');
+            subBtns.forEach(btn => btn.classList.remove('active'));
+
+            if(subKey === 'surgery') {
+                container.querySelector('#box-' + mainKey + '-surgery').style.display = 'block';
+                container.querySelector('#sub-' + mainKey + '-surg').classList.add('active');
+            } else {
+                container.querySelector('#box-' + mainKey + '-parasurg').style.display = 'block';
+                container.querySelector('#sub-' + mainKey + '-para').classList.add('active');
+            }
+
+            document.getElementById('procedure-portal-viewer').style.display = 'none';
+        }
+
+        function viewProcedureDetail(mainTab, subTab, name) {
+            const portal = document.getElementById('procedure-portal-viewer');
+            const pTitle = document.getElementById('portal-title');
+            const pBody = document.getElementById('portal-body-text');
+
+            portal.style.display = 'block';
+            pTitle.innerText = `${mainTab} Hub → ${subTab} → ${name}`;
+            
+            if (mainTab === "Theory") {
+                pBody.innerHTML = `<strong>Theoretical Compendium Blueprint for ${name}:</strong><br><br>• Details coming soon.`;
+            } else if (mainTab === "Instrument Trolley") {
+                pBody.innerHTML = `<strong>Trolley Configuration Requirements for ${name}:</strong><br><br>• Setup coming soon.`;
+            } else if (mainTab === "Videos") {
+                pBody.innerHTML = `<strong>Visual Stream Repository Module for ${name}:</strong><br><br>• Video player node coming soon.`;
+            }
+            portal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 </body>
